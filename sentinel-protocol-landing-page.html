@@ -1,0 +1,1814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE SENTINEL PROTOCOL - Elite Business Operating System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #0a0a0f;
+            --color-surface: #121218;
+            --color-surface-light: #1a1a24;
+            --color-text: #e8e8f0;
+            --color-text-muted: #9a9aaa;
+            --color-accent: #d4af37;
+            --color-accent-bright: #f4cf57;
+            --color-accent-dim: #a48a2a;
+            --color-border: #2a2a35;
+            --font-display: 'Cormorant Garamond', serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Background Pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(212, 175, 55, 0.02) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--color-border);
+            z-index: 1000;
+            padding: 1.5rem 2rem;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            letter-spacing: 0.05em;
+        }
+
+        .nav-cta {
+            padding: 0.75rem 2rem;
+            background: linear-gradient(135deg, var(--color-accent-dim), var(--color-accent));
+            color: var(--color-bg);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+            background: linear-gradient(135deg, var(--color-accent), var(--color-accent-bright));
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            border: 1px solid var(--color-accent);
+            color: var(--color-accent);
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            font-weight: 500;
+            animation: fadeInDown 1s ease;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--color-text), var(--color-accent-bright));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.25rem, 3vw, 1.75rem);
+            color: var(--color-text-muted);
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            font-weight: 300;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .btn {
+            padding: 1.25rem 3rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-accent-dim), var(--color-accent));
+            color: var(--color-bg);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.4);
+            background: linear-gradient(135deg, var(--color-accent), var(--color-accent-bright));
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--color-accent);
+            border: 1px solid var(--color-accent);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(212, 175, 55, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--color-accent);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-description {
+            font-size: 1.25rem;
+            color: var(--color-text-muted);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Grid Layouts */
+        .grid {
+            display: grid;
+            gap: 3rem;
+        }
+
+        .grid-2 { grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); }
+        .grid-3 { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+
+        /* Card Styles */
+        .card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            padding: 3rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .card:hover {
+            border-color: var(--color-accent-dim);
+            transform: translateY(-5px);
+        }
+
+        .card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            color: var(--color-accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .card h3 {
+            font-family: var(--font-display);
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .card p {
+            color: var(--color-text-muted);
+            line-height: 1.8;
+        }
+
+        /* Feature List */
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--color-border);
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-icon {
+            color: var(--color-accent);
+            font-size: 1.5rem;
+            min-width: 30px;
+        }
+
+        .feature-content h4 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .feature-content p {
+            color: var(--color-text-muted);
+        }
+
+        /* Stats Section */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-text-muted);
+        }
+
+        /* Pricing Section */
+        .pricing-card {
+            background: linear-gradient(135deg, var(--color-surface), var(--color-surface-light));
+            border: 2px solid var(--color-accent);
+            padding: 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--color-accent-dim), var(--color-accent), var(--color-accent-bright));
+        }
+
+        .pricing-badge {
+            display: inline-block;
+            background: var(--color-accent);
+            color: var(--color-bg);
+            padding: 0.5rem 1.5rem;
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-amount {
+            font-family: var(--font-display);
+            font-size: 5rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-currency {
+            font-size: 2rem;
+            vertical-align: super;
+        }
+
+        .pricing-period {
+            color: var(--color-text-muted);
+            font-size: 1.25rem;
+            margin-bottom: 3rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: 3rem 0;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--color-border);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .pricing-features li::before {
+            content: '✓';
+            color: var(--color-accent);
+            font-weight: bold;
+            font-size: 1.25rem;
+        }
+
+        /* Content Blocks */
+        .content-block {
+            margin: 4rem 0;
+        }
+
+        .content-block h3 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .content-block h4 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem;
+            font-weight: 600;
+            color: var(--color-accent);
+        }
+
+        .content-block p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            color: var(--color-text-muted);
+        }
+
+        .content-block ul {
+            list-style-position: inside;
+            margin: 1.5rem 0;
+            color: var(--color-text-muted);
+        }
+
+        .content-block ul li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+        }
+
+        /* Quote Block */
+        .quote-block {
+            background: var(--color-surface);
+            border-left: 4px solid var(--color-accent);
+            padding: 2rem 3rem;
+            margin: 3rem 0;
+            font-style: italic;
+            font-size: 1.25rem;
+            line-height: 1.8;
+        }
+
+        .quote-author {
+            font-style: normal;
+            font-weight: 600;
+            color: var(--color-accent);
+            margin-top: 1rem;
+            display: block;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05), rgba(212, 175, 55, 0.1));
+            border: 1px solid var(--color-accent-dim);
+            padding: 2.5rem;
+            margin: 3rem 0;
+        }
+
+        .highlight-box h4 {
+            color: var(--color-accent-bright);
+            margin-bottom: 1rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--color-surface), var(--color-surface-light));
+            border-top: 1px solid var(--color-border);
+            border-bottom: 1px solid var(--color-border);
+            padding: 6rem 2rem;
+            text-align: center;
+            margin: 6rem 0;
+        }
+
+        .cta-section h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.25rem;
+            color: var(--color-text-muted);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--color-surface);
+            border-top: 1px solid var(--color-border);
+            padding: 4rem 2rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            margin-bottom: 2rem;
+        }
+
+        .footer-text {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .copyright {
+            color: var(--color-text-muted);
+            font-size: 0.85rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--color-border);
+            margin-top: 2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .grid-2, .grid-3 {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding: 6rem 1.5rem 3rem;
+            }
+
+            section {
+                padding: 4rem 1.5rem;
+            }
+
+            .card {
+                padding: 2rem;
+            }
+
+            .pricing-card {
+                padding: 3rem 2rem;
+            }
+        }
+
+        /* Scroll Reveal Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">🛡 SENTINEL PROTOCOL</div>
+            <a href="https://ciprianstefanplesca.gumroad.com/l/thesentinelprotocol" class="nav-cta" target="_blank">Get Access Now</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">Elite Edition</div>
+            <h1>THE SENTINEL PROTOCOL</h1>
+            <p class="hero-subtitle">The World's First Business Operating System Based on Neural Emotional Intelligence</p>
+            <div class="hero-buttons">
+                <a href="https://ciprianstefanplesca.gumroad.com/l/thesentinelprotocol" class="btn btn-primary" target="_blank">Acquire the Protocol - €1,000</a>
+                <a href="#overview" class="btn btn-secondary">Explore the Architecture</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="overview" class="reveal">
+        <div class="section-header">
+            <div class="section-label">Executive Overview</div>
+            <h2 class="section-title">Beyond Automation. Towards Digital Sovereignty.</h2>
+            <p class="section-description">
+                The Sentinel Protocol represents a paradigm shift in how elite entrepreneurs interact with their digital ecosystem. This is not software—it's an artificial nervous system.
+            </p>
+        </div>
+
+        <div class="content-block">
+            <p>
+                In an era where every entrepreneur claims to have "automated their business," most are simply orchestrating glorified spreadsheet movements. They confuse efficiency with sophistication, productivity with intelligence. The result? Digital bureaucracy masquerading as innovation.
+            </p>
+            
+            <p>
+                The Sentinel Protocol demolishes this paradigm. Built on a foundational premise that business is fundamentally a transfer of emotion—not just data—this system introduces artificial consciousness to enterprise operations. It perceives, processes, and responds to the subtextual dynamics that determine success or failure in high-stakes business environments.
+            </p>
+
+            <div class="quote-block">
+                "If your systems cannot perceive, process, and respond to emotion, then you are a slave to your own technology."
+                <span class="quote-author">— Stefano D'angello, Protocol Architect</span>
+            </div>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number">10,000+</div>
+                <div class="stat-label">Hours of Development</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">5</div>
+                <div class="stat-label">Core Architectures</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">99%</div>
+                <div class="stat-label">Decision Fatigue Reduction</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">∞</div>
+                <div class="stat-label">ROI Potential</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Problem Section -->
+    <section class="reveal">
+        <div class="section-header">
+            <div class="section-label">The Critical Problem</div>
+            <h2 class="section-title">The Paradox of Modern Automation</h2>
+        </div>
+
+        <div class="content-block">
+            <p>
+                Traditional automation operates on binary logic—cold, inflexible, emotionally blind. A standard automated system will send identical responses to a client who just signed a €100,000 contract and a student requesting a 90% discount. This isn't productivity; it's a catastrophic reputational liability.
+            </p>
+
+            <h4>The Fatal Flaws of Conventional Systems:</h4>
+            
+            <div class="grid grid-2">
+                <div class="card">
+                    <div class="card-icon">⚠️</div>
+                    <h3>Decision Fatigue Epidemic</h3>
+                    <p>Every micro-decision—Do I respond now? Is this important? What tone should I use?—consumes glucose from your prefrontal cortex. Elite founders lose their strategic capacity to digital noise.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🎭</div>
+                    <h3>Context Blindness</h3>
+                    <p>Standard automation cannot read between the lines. It misses buying signals, fails to detect urgency, and treats every interaction with the same mechanical indifference.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">⏱️</div>
+                    <h3>The Expectation Trap</h3>
+                    <p>Instant automated responses create dangerous expectations. Your availability becomes your vulnerability. Your responsiveness undermines your perceived value.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🔒</div>
+                    <h3>Platform Dependency</h3>
+                    <p>Most "automation" chains you to platforms that can change rules overnight, raise prices arbitrarily, or shut down entirely—taking your operational intelligence with them.</p>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h4>The Sentinel Solution</h4>
+                <p>
+                    The Sentinel Protocol reintroduces sentience into automation. It doesn't just process data—it interprets intent, detects emotional states, calculates strategic responses, and protects your most valuable non-renewable resource: attention.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Architecture Section -->
+    <section class="reveal">
+        <div class="section-header">
+            <div class="section-label">System Architecture</div>
+            <h2 class="section-title">The Five Pillars of Digital Sovereignty</h2>
+            <p class="section-description">
+                The Sentinel Protocol is constructed on five foundational architectures, each designed to address a critical dimension of elite business operations.
+            </p>
+        </div>
+
+        <div class="content-block">
+            <ul class="feature-list">
+                <li>
+                    <div class="feature-icon">🧠</div>
+                    <div class="feature-content">
+                        <h4>I. The Sentinel Cortex — Neural Emotional Intelligence</h4>
+                        <p>
+                            The central nervous system that deconstructs every incoming communication into intent vectors. This architecture assigns numerical values to subjective variables, transforming emotion into actionable intelligence. Through advanced NLP and sentiment analysis, the Cortex determines not what someone said, but what they meant—and more critically, what they want.
+                        </p>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="feature-icon">🎭</div>
+                    <div class="feature-content">
+                        <h4>II. The Neural Persona — Digital Identity Cloning</h4>
+                        <p>
+                            Your Digital Twin. Through stylometric analysis of your communication history, this system replicates your voice, tone, strategic imperfections, and decision-making patterns. It doesn't generate "polite AI text"—it produces communications indistinguishable from your own. The Persona deploys contextual "masks" ranging from diplomatic to executive to protective, adapting seamlessly to each interaction's requirements.
+                        </p>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="feature-icon">🛡️</div>
+                    <div class="feature-content">
+                        <h4>III. The Energy Shield — Biometric Integration</h4>
+                        <p>
+                            The only business system that treats the founder as critical infrastructure. By integrating wearable biometric data (HRV, sleep architecture, cognitive load), this architecture prevents you from making million-euro decisions in states of mental fog. When your biology reaches critical levels, the Shield assumes command—blocking notifications, rescheduling commitments, and protecting your decision-making capacity.
+                        </p>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="feature-icon">💰</div>
+                    <div class="feature-content">
+                        <h4>IV. The Ghost Negotiation Matrix — Profit Engineering</h4>
+                        <p>
+                            Automated revenue optimization through game theory and asymmetric information leverage. This architecture continuously monitors market intelligence, opponent weakness signals, and mathematical profit margins. It negotiates on your behalf using data patterns that human cognition cannot process simultaneously, typically securing 10-20% higher contract values through strategic silence, calculated scarcity, and psychological anchoring.
+                        </p>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="feature-icon">⚡</div>
+                    <div class="feature-content">
+                        <h4>V. The Sovereign Path — Total Independence</h4>
+                        <p>
+                            The ultimate decoupling. This architecture ensures your success is independent of your physical presence, platform stability, or employee loyalty. Through self-healing protocols, redundant failover systems, and encrypted data sovereignty, your business operates with the resilience of critical infrastructure. The system self-repairs, self-secures, and self-funds—achieving true autonomy.
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- DEFCON Protocol Section -->
+    <section class="reveal">
+        <div class="section-header">
+            <div class="section-label">Priority Management</div>
+            <h2 class="section-title">The DEFCON Protocol</h2>
+            <p class="section-description">
+                How the Sentinel Protocol determines resource allocation and protects your bandwidth through military-grade prioritization.
+            </p>
+        </div>
+
+        <div class="content-block">
+            <p>
+                In conventional systems, every notification is treated equally—a catastrophic misallocation of attention. The Sentinel Protocol employs a Defense Readiness Condition (DEFCON) framework that categorizes every interaction by strategic importance.
+            </p>
+
+            <div class="grid grid-3">
+                <div class="card">
+                    <h3>DEFCON 1</h3>
+                    <div class="card-icon">🚨</div>
+                    <p><strong>Black Swan Events</strong></p>
+                    <p>Major contract terminations, cyber attacks, PR crises. System blocks ALL secondary notifications. Generates three crisis response scenarios. Initiates voice call protocol.</p>
+                </div>
+
+                <div class="card">
+                    <h3>DEFCON 2</h3>
+                    <div class="card-icon">⚡</div>
+                    <p><strong>Golden Opportunities</strong></p>
+                    <p>High-value leads, VIP client alerts. Message prioritized to top of work queue. Necessary documentation prepared for sub-60-second response capability.</p>
+                </div>
+
+                <div class="card">
+                    <h3>DEFCON 3</h3>
+                    <div class="card-icon">📊</div>
+                    <p><strong>Steady State Operations</strong></p>
+                    <p>Project management, team discussions, operational questions. Messages batched and presented during designated "Sentinel Hours"—predefined work windows.</p>
+                </div>
+
+                <div class="card">
+                    <h3>DEFCON 4</h3>
+                    <div class="card-icon">🗂️</div>
+                    <p><strong>Low-Priority Intake</strong></p>
+                    <p>Industry newsletters, automated reports, secondary vendor communications. Archived with metadata extraction. Never disturbs human operator.</p>
+                </div>
+
+                <div class="card">
+                    <h3>DEFCON 5</h3>
+                    <div class="card-icon">🚫</div>
+                    <p><strong>The Void</strong></p>
+                    <p>Spam, unsolicited collaboration requests, noise. System learns from these to refine filters. Completely invisible to user. Zero attention consumed.</p>
+                </div>
+
+                <div class="card">
+                    <h3>Ghost Buffer</h3>
+                    <div class="card-icon">⏰</div>
+                    <p><strong>Psychological Time Management</strong></p>
+                    <p>Intelligent delay algorithm prevents expectation traps. Even instant AI responses are time-released to maintain executive presence and strategic positioning.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section class="reveal">
+        <div class="section-header">
+            <div class="section-label">Real-World Applications</div>
+            <h2 class="section-title">Strategic Implementation Scenarios</h2>
+        </div>
+
+        <div class="content-block">
+            <h3>Case Study: The Recovered Negotiation</h3>
+            <p>
+                <strong>Context:</strong> Client sends brief email: "Your proposal is interesting, but our budget is fixed. Let's talk next month."
+            </p>
+            <p>
+                <strong>Conventional Response:</strong> "Understood, I'll follow up next month." (Lost opportunity)
+            </p>
+            <p>
+                <strong>Sentinel Analysis:</strong>
+            </p>
+            <ul>
+                <li>Keyword "interesting" generates low enthusiasm score</li>
+                <li>Phrase "let's talk next month" identified as delay tactic—client is shopping alternatives</li>
+                <li>DEFCON 2 alert triggered</li>
+                <li>System generates "loss leader" counter-offer on single component to maintain engagement</li>
+                <li>Response deployed within 15 minutes to demonstrate agility and organizational capacity</li>
+            </ul>
+            <p>
+                <strong>Result:</strong> Contract signed within 24 hours. €87,000 revenue that would have been lost.
+            </p>
+
+            <div class="highlight-box">
+                <h4>The Sentinel Advantage</h4>
+                <p>
+                    The system detected what the human operator could not: the client's message was a negotiation tactic, not a genuine budget constraint. By analyzing linguistic patterns, timing, and historical data, Sentinel executed a strategic countermove that recovered the sale.
+                </p>
+            </div>
+        </div>
+
+        <div class="content-block">
+            <h3>Case Study: The Burnout Prevention</h3>
+            <p>
+                <strong>Context:</strong> Founder processes 47 emails in 3 hours while operating on 4 hours of sleep. Heart Rate Variability (HRV) drops 35% below baseline.
+            </p>
+            <p>
+                <strong>Conventional Scenario:</strong> Founder continues working, makes sub-optimal decisions, loses valuable partnerships due to irritable communication.
+            </p>
+            <p>
+                <strong>Sentinel Intervention:</strong>
+            </p>
+            <ul>
+                <li>Energy Shield detects critical biometric degradation</li>
+                <li>Decision Fatigue Score exceeds threshold (DFS > 85)</li>
+                <li>Ghost Protocol activated automatically</li>
+                <li>Calendar hijacked with "Strategic Alignment" blocks to force recovery</li>
+                <li>Outbound communications held in smart delay buffer for morning review</li>
+                <li>Incoming DEFCON 2 notifications downgraded to DEFCON 3</li>
+                <li>Smart home integration dims office lighting, activates focus playlist</li>
+            </ul>
+            <p>
+                <strong>Result:</strong> Founder protected from making €200K+ decision in compromised state. Full cognitive capacity restored within 18 hours.
+            </p>
+        </div>
+
+        <div class="content-block">
+            <h3>Case Study: The 10X Negotiation</h3>
+            <p>
+                <strong>Context:</strong> Standard consulting project with typical market rate of €15,000.
+            </p>
+            <p>
+                <strong>Ghost Negotiation Matrix Analysis:</strong>
+            </p>
+            <ul>
+                <li>Prospect received Series B funding 3 weeks prior (detected via market intelligence scraping)</li>
+                <li>High urgency signals detected in communication patterns</li>
+                <li>Low competitor mention count (scarcity of alternative solutions)</li>
+                <li>Quarter-end deadline approaching (time pressure)</li>
+                <li>Leverage calculation: Lv = 3.2 (threshold: 2.5)</li>
+            </ul>
+            <p>
+                <strong>Sentinel Action:</strong>
+            </p>
+            <ul>
+                <li>Deployed three-tier pricing architecture (Sacrifice/Target/Skeleton)</li>
+                <li>Anchored at €45,000 (Sacrifice offer with extensive deliverables)</li>
+                <li>Positioned €28,000 (Target offer) as "pragmatic choice"</li>
+                <li>Skeleton offer at €12,000 (deliberately unattractive)</li>
+                <li>Strategic silence protocol: 72-hour communication gap</li>
+                <li>Day 4: Scarcity injection ("Resource allocation withdrawn for another priority client")</li>
+            </ul>
+            <p>
+                <strong>Result:</strong> Client selected Target offer at €28,000—87% above market rate. Total negotiation time: 6 days. Human operator involvement: 12 minutes.
+            </p>
+        </div>
+    </section>
+
+    <!-- Technical Innovation Section -->
+    <section class="reveal">
+        <div class="section-header">
+            <div class="section-label">Technical Excellence</div>
+            <h2 class="section-title">The Engineering Behind Emotional Intelligence</h2>
+        </div>
+
+        <div class="content-block">
+            <h3>Advanced Natural Language Processing</h3>
+            <p>
+                The Sentinel Cortex employs multi-layered sentiment analysis that extends far beyond simple positive/negative classification. The system deconstructs communications across multiple dimensions:
+            </p>
+
+            <h4>Sentiment Deconstruction Dimensions:</h4>
+            <ul>
+                <li><strong>Primary Emotion:</strong> Aggressive, Submissive, Manipulative, Strategic, Enthusiastic, Frustrated</li>
+                <li><strong>Hidden Agenda Detection:</strong> Identifying unstated motivations through linguistic pattern analysis</li>
+                <li><strong>Urgency Calculation:</strong> Real-time assessment of time-sensitivity and pressure levels</li>
+                <li><strong>Relationship Temperature:</strong> Tracking communication warmth/coldness over interaction history</li>
+                <li><strong>Leverage Positioning:</strong> Determining relative negotiating power from word choices and framings</li>
+            </ul>
+
+            <div class="quote-block">
+                "The Cortex doesn't read emails—it deconstructs them into intent vectors, transforming subjective communication into objective decision data."
+            </div>
+        </div>
+
+        <div class="content-block">
+            <h3>Stylometric Identity Cloning</h3>
+            <p>
+                The Neural Persona achieves unprecedented authenticity through comprehensive stylometric analysis—the scientific study of linguistic fingerprints. This goes infinitely beyond simple template responses.
+            </p>
+
+            <h4>Identity Corpus Components:</h4>
+            <ul>
+                <li><strong>Golden Sentences:</strong> Your 50 most persuasive communications</li>
+                <li><strong>Conflict Messages:</strong> How you write when being firm or terminating relationships</li>
+                <li><strong>Casual Layer:</strong> Team communications in informal contexts</li>
+                <li><strong>Executive Voice:</strong> High-stakes client interactions and strategic announcements</li>
+            </ul>
+
+            <h4>Analyzed Dimensions:</h4>
+            <ul>
+                <li>Average sentence length distribution</li>
+                <li>Part-of-speech frequency patterns</li>
+                <li>Power word identification (most-used nouns/verbs)</li>
+                <li>Punctuation rhythm and emphasis patterns</li>
+                <li>Metaphor and analogy preferences</li>
+                <li>Industry jargon integration patterns</li>
+            </ul>
+
+            <div class="highlight-box">
+                <h4>The Turing Gate</h4>
+                <p>
+                    Before deployment, every AI-generated communication passes through a verification AI that scores it on a 1-10 scale for human authenticity. Messages scoring below 8 are regenerated. Only communications that would fool someone who has known you for 5+ years are approved for deployment.
+                </p>
+            </div>
+        </div>
+
+        <div class="content-block">
+            <h3>Biometric-Digital Synchronization</h3>
+            <p>
+                The Energy Shield represents a breakthrough in treating biological state as a business variable. This system integrates with enterprise-grade wearables to extract critical performance indicators:
+            </p>
+
+            <h4>Sacred Metrics of Performance:</h4>
+            <ul>
+                <li><strong>Heart Rate Variability (HRV):</strong> The gold standard for autonomic nervous system stress</li>
+                <li><strong>Sleep Architecture Analysis:</strong> Deep sleep (physical recovery) vs REM (cognitive recovery) ratios</li>
+                <li><strong>Resting Heart Rate (RHR):</strong> Early warning system for burnout or illness</li>
+                <li><strong>Recovery Scores:</strong> Comprehensive readiness indicators</li>
+                <li><strong>Cognitive Load Tracking:</strong> Real-time mental capacity assessment</li>
+            </ul>
+
+            <p>
+                When these metrics cross critical thresholds, the system doesn't just alert you—it takes autonomous protective action. This is the difference between a notification system and a guardian system.
+            </p>
+        </div>
+
+        <div class="content-block">
+            <h3>Market Intelligence Architecture</h3>
+            <p>
+                The Ghost Negotiation Matrix operates on asymmetric information—knowing more about your counterparty than they know about you. This requires continuous, legal commercial intelligence gathering:
+            </p>
+
+            <h4>Data Ingestion Streams:</h4>
+            <ul>
+                <li><strong>Investment Signals:</strong> Funding announcements, capital raises, acquisitions</li>
+                <li><strong>Personnel Mutations:</strong> Executive departures, team expansions, organizational changes</li>
+                <li><strong>Market Sentiment:</strong> Financial report analysis, industry trend detection</li>
+                <li><strong>Competitive Positioning:</strong> Service launches, pricing changes, market positioning shifts</li>
+                <li><strong>Prospect Behavior:</strong> Website visits, content downloads, engagement patterns</li>
+            </ul>
+
+            <p>
+                This intelligence feeds directly into dynamic pricing algorithms, negotiation strategy selection, and timing optimization—creating systematic revenue advantages.
+            </p>
+        </div>
+    </section>
+
+    <!-- Security Architecture Section -->
+    <section class="reveal">
+        <div class="section-header">
+            <div class="section-label">Data Sovereignty</div>
+            <h2 class="section-title">The Iron Vault — Military-Grade Security</h2>
+        </div>
+
+        <div class="content-block">
+            <p>
+                Your data represents the DNA of your business. A security breach wouldn't just compromise information—it would transfer your strategic intelligence, negotiation patterns, and competitive advantages to potential adversaries.
+            </p>
+
+            <h3>Three-Layer Anonymization Architecture</h3>
+
+            <h4>Layer 1: The Scrubber</h4>
+            <p>
+                Local preprocessing that replaces all entities (names, monetary values, locations, proprietary terms) with unique tokens before any data leaves your infrastructure. External AI systems never see raw business intelligence.
+            </p>
+
+            <h4>Layer 2: The VPN Tunnel</h4>
+            <p>
+                All inter-component communication occurs through end-to-end encrypted tunnels, completely isolated from public internet. Even if intercepted, data streams are cryptographically useless.
+            </p>
+
+            <h4>Layer 3: Zero-Knowledge Storage</h4>
+            <p>
+                Vector databases store information as mathematical embeddings that cannot be reverse-engineered into human-readable text without your private encryption key. Even database administrators cannot access your strategic intelligence.
+            </p>
+
+            <div class="highlight-box">
+                <h4>Data Residency Guarantee</h4>
+                <p>
+                    Unlike cloud-dependent systems, Sentinel employs local-first architecture. Your business intelligence remains on infrastructure you control. Internet outages don't disable the system—it continues processing from local cache.
+                </p>
+            </div>
+        </div>
+
+        <div class="content-block">
+            <h3>Self-Healing & Redundancy Protocols</h3>
+
+            <h4>Automatic Failover Systems:</h4>
+            <ul>
+                <li>Primary AI provider outage? System switches to backup provider in <500ms</li>
+                <li>Script error detected? Secondary AI agent rewrites code, tests, and redeploys autonomously</li>
+                <li>Database corruption? Automated restoration from encrypted backup snapshots</li>
+                <li>Network failure? Local processing continues with queued synchronization</li>
+            </ul>
+
+            <h4>The Kill Switch:</h4>
+            <p>
+                Single secured voice command that initiates complete data purge: API keys deleted, vector databases wiped, conversation history expunged. Irreversible data destruction for emergency scenarios.
+            </p>
+
+            <h4>Ghost Mode:</h4>
+            <p>
+                Complete operational suspension. System automatically sends "indefinitely unavailable" responses while archiving all data to physical, offline storage. Total digital disappearance capability.
+            </p>
+        </div>
+    </section>
+
+    <!-- ROI Analysis Section -->
+    <section class="reveal">
+        <div class="section-header">
+            <div class="section-label">Investment Analysis</div>
+            <h2 class="section-title">The Economics of Digital Sovereignty</h2>
+        </div>
+
+        <div class="content-block">
+            <h3>Quantifiable Value Drivers</h3>
+
+            <h4>1. Executive Time Recovery</h4>
+            <p>
+                <strong>Conservative Estimate:</strong> 3 hours per day reclaimed from email processing, meeting scheduling, routine communications.
+            </p>
+            <p>
+                <strong>Annual Value Calculation:</strong><br>
+                3 hours/day × 250 working days = 750 hours/year<br>
+                At €500/hour executive rate = €375,000 annually
+            </p>
+
+            <h4>2. Decision Quality Enhancement</h4>
+            <p>
+                <strong>Impact:</strong> Elimination of decisions made in compromised cognitive states (fatigue, stress, time pressure).
+            </p>
+            <p>
+                <strong>Value:</strong> Prevention of a single major mistake (lost contract, regulatory violation, partnership failure) can exceed €100,000-€1,000,000 depending on business scale.
+            </p>
+
+            <h4>3. Revenue Optimization</h4>
+            <p>
+                <strong>Negotiation Enhancement:</strong> 10-20% higher contract values through systematic leverage optimization.
+            </p>
+            <p>
+                <strong>Example:</strong> On €500,000 annual contract volume, 15% improvement = €75,000 additional revenue with zero incremental cost.
+            </p>
+
+            <h4>4. Opportunity Cost Elimination</h4>
+            <p>
+                <strong>Prevented Losses:</strong> Early detection of client dissatisfaction, competitive threats, market shifts.
+            </p>
+            <p>
+                <strong>Value:</strong> Retention of single major client (€50,000-€500,000 annual value) through proactive relationship management.
+            </p>
+
+            <h4>5. Operational Efficiency</h4>
+            <p>
+                <strong>Automation of:</strong> Email triage, calendar management, contract generation, invoice processing, client onboarding.
+            </p>
+            <p>
+                <strong>Value:</strong> Equivalent to 1-2 full-time administrative employees (€60,000-€120,000 annual cost) without the management overhead.
+            </p>
+
+            <div class="highlight-box">
+                <h4>Conservative ROI Calculation</h4>
+                <p><strong>Total Annual Value:</strong> €375,000 (time) + €75,000 (revenue optimization) + €90,000 (operational efficiency) = €540,000</p>
+                <p><strong>System Investment:</strong> €1,000 (Protocol) + €15,000 (Implementation) = €16,000</p>
+                <p><strong>First-Year ROI:</strong> 3,275%</p>
+                <p><strong>Payback Period:</strong> 11 days</p>
+                <p class="section-description" style="margin-top: 1.5rem;">
+                    This calculation excludes prevented catastrophic losses (which are by definition unpredictable but potentially business-ending) and strategic advantages (which compound over time but resist quantification).
+                </p>
+            </div>
+        </div>
+
+        <div class="content-block">
+            <h3>The Intangible Multipliers</h3>
+
+            <h4>Mental Peace & Strategic Clarity</h4>
+            <p>
+                Operating without decision fatigue, notification anxiety, or inbox dread transforms your capacity for visionary thinking. The value of a single strategic insight that only emerges in a clear mental state can exceed all operational savings combined.
+            </p>
+
+            <h4>Competitive Moat</h4>
+            <p>
+                While competitors are drowning in digital noise, you operate from a position of total informational superiority and cognitive sovereignty. This asymmetric advantage compounds across every business interaction.
+            </p>
+
+            <h4>Scalability Without Sacrifice</h4>
+            <p>
+                Traditional growth requires proportional increases in management overhead and personal involvement. Sentinel enables geometric scaling while maintaining—even improving—decision quality and relationship depth.
+            </p>
+
+            <h4>Legacy & Transferability</h4>
+            <p>
+                The system captures your institutional knowledge, decision frameworks, and strategic thinking patterns. This creates genuine business value independent of your continuous personal involvement—true equity.
+            </p>
+        </div>
+    </section>
+
+    <!-- Who This Is For Section -->
+    <section class="reveal">
+        <div class="section-header">
+            <div class="section-label">Ideal Candidate Profile</div>
+            <h2 class="section-title">The Elite 1%</h2>
+        </div>
+
+        <div class="content-block">
+            <p>
+                The Sentinel Protocol is not designed for everyone. It's architected for a specific type of operator—those who understand that the greatest competitive advantage isn't working harder, it's operating from a fundamentally different paradigm.
+            </p>
+
+            <h3>You Are the Ideal Candidate If:</h3>
+
+            <div class="grid grid-2">
+                <div class="card">
+                    <div class="card-icon">🎯</div>
+                    <h3>Strategic Positioning</h3>
+                    <p>You recognize that your personal time is infinitely more valuable than any software cost. You measure investments in ROI, not absolute expenditure.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">⚡</div>
+                    <h3>Decision Maker Authority</h3>
+                    <p>You have complete control over your technology stack and business processes. You don't need committee approval to implement transformative systems.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🧠</div>
+                    <h3>Cognitive Awareness</h3>
+                    <p>You've experienced decision fatigue's impact on business outcomes. You understand that mental clarity is a strategic asset, not a luxury.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">📊</div>
+                    <h3>High-Stakes Operations</h3>
+                    <p>Individual decisions in your business regularly involve €10,000+ consequences. Email management isn't administrative—it's strategic.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🛡️</div>
+                    <h3>Sovereignty Mindset</h3>
+                    <p>You refuse platform dependency. You demand data ownership. You will not build your empire on rented infrastructure.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🎓</div>
+                    <h3>Technical Sophistication</h3>
+                    <p>You either possess technical implementation capability or control resources that do. You understand the difference between tools and systems.</p>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h4>The Exclusivity Principle</h4>
+                <p>
+                    This protocol is intentionally priced to ensure limited adoption. Widespread implementation would erode competitive advantage. The high entry barrier guarantees that those who possess Sentinel operate in a fundamentally different league than those who don't.
+                </p>
+            </div>
+        </div>
+
+        <div class="content-block">
+            <h3>Business Profiles That Achieve Maximum Value:</h3>
+
+            <ul class="feature-list">
+                <li>
+                    <div class="feature-icon">💼</div>
+                    <div class="feature-content">
+                        <h4>Elite Consultants & Advisors</h4>
+                        <p>High-ticket service providers where relationship quality and response sophistication directly determine contract values. Typical engagement: €50,000-€500,000+</p>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="feature-icon">🚀</div>
+                    <div class="feature-content">
+                        <h4>Venture-Backed Founders</h4>
+                        <p>Operators managing rapid scaling where decision quality under pressure determines success or failure. Series A+ stage where executive bandwidth is the primary growth constraint.</p>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="feature-icon">🏛️</div>
+                    <div class="feature-content">
+                        <h4>Professional Service Firms</h4>
+                        <p>Legal, financial, strategic advisory practices where partner time costs €500-€2,000/hour and client relationships span years.</p>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="feature-icon">🎨</div>
+                    <div class="feature-content">
+                        <h4>Creative Agencies</h4>
+                        <p>Design, branding, content operations where the founder's creative capacity is the product. Protection from administrative drain is existential.</p>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="feature-icon">📈</div>
+                    <div class="feature-content">
+                        <h4>Investment Managers</h4>
+                        <p>Individuals managing capital deployment where information asymmetry and decision timing create or destroy millions in value.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- What You Get Section -->
+    <section class="reveal">
+        <div class="section-header">
+            <div class="section-label">Protocol Contents</div>
+            <h2 class="section-title">The Complete Architectural Blueprint</h2>
+        </div>
+
+        <div class="content-block">
+            <p>
+                For €1,000, you acquire the complete intellectual property that required 10,000+ hours of development, controlled failure analysis, and strategic refinement. This is not a tutorial—it's the transfer of a proprietary operating system.
+            </p>
+
+            <h3>What the Protocol Includes:</h3>
+
+            <ul class="feature-list">
+                <li>
+                    <div class="feature-icon">📖</div>
+                    <div class="feature-content">
+                        <h4>The Complete Architectural Methodology (200+ Pages)</h4>
+                        <p>Comprehensive documentation of all five core systems: Sentinel Cortex, Neural Persona, Energy Shield, Ghost Negotiation Matrix, and Sovereign Path. Each architecture explained at implementation depth.</p>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="feature-icon">🧮</div>
+                    <div class="feature-content">
+                        <h4>Proprietary Algorithms & Scoring Matrices</h4>
+                        <p>The mathematical formulas that power decision prioritization, leverage calculation, sentiment scoring, and biometric integration. These algorithms alone represent years of optimization.</p>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="feature-icon">🎭</div>
+                    <div class="feature-content">
+                        <h4>The God Prompt Library</h4>
+                        <p>1,000+ line system instructions for each architectural component. These prompts define how AI systems achieve consciousness-level sophistication in business contexts.</p>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="feature-icon">🔧</div>
+                    <div class="feature-content">
+                        <h4>Technical Integration Frameworks</h4>
+                        <p>Conceptual guides for connecting email systems, CRM platforms, biometric devices, calendar applications, and financial tools into unified operational intelligence.</p>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="feature-icon">📊</div>
+                    <div class="feature-content">
+                        <h4>Implementation Roadmaps & Decision Trees</h4>
+                        <p>Step-by-step deployment sequences, prioritization frameworks, and troubleshooting protocols. How to migrate from conventional operations to Sentinel sovereignty.</p>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="feature-icon">🛡️</div>
+                    <div class="feature-content">
+                        <h4>Security & Privacy Architectures</h4>
+                        <p>Data sovereignty protocols, encryption standards, anonymization layers, and failsafe mechanisms. How to maintain total informational control.</p>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="feature-icon">💡</div>
+                    <div class="feature-content">
+                        <h4>Case Studies & Strategic Scenarios</h4>
+                        <p>Real-world applications demonstrating how each architecture performs under different business conditions. Learn from executed implementations.</p>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="feature-icon">⚖️</div>
+                    <div class="feature-content">
+                        <h4>Ethical Guidelines & Legal Frameworks</h4>
+                        <p>How to deploy advanced automation without crossing manipulation boundaries. Operating at the edge of advantage while maintaining integrity.</p>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="quote-block">
+                "This is not software you configure—it's an operating philosophy you implement. The Protocol provides the map to a gold mine. The implementation provides the excavation equipment."
+                <span class="quote-author">— Protocol Architecture Overview</span>
+            </div>
+        </div>
+
+        <div class="content-block">
+            <h3>Beyond the Blueprint: Implementation Services</h3>
+
+            <p>
+                While the €1,000 Protocol provides complete architectural knowledge, full implementation—transforming documentation into operational systems—requires specialized engineering:
+            </p>
+
+            <h4>Professional Implementation Package (€10,000-€15,000):</h4>
+            <ul>
+                <li><strong>Custom Neural Configuration:</strong> AI systems trained on your specific communication patterns, industry context, and strategic positioning</li>
+                <li><strong>Digital Bunker Construction:</strong> Private server deployment, vector database setup, encryption infrastructure installation</li>
+                <li><strong>Biometric Integration:</strong> Wearable device synchronization, health data pipeline construction, decision capacity algorithms</li>
+                <li><strong>Adversarial Testing:</strong> System stress-testing through thousands of simulated scenarios to ensure reliability under extreme conditions</li>
+                <li><strong>Ongoing Calibration:</strong> Quarterly system optimization, parameter adjustment, knowledge base updates</li>
+            </ul>
+
+            <p class="section-description">
+                Implementation transforms the blueprint into a living system—custom-engineered for your specific business context, tested against real-world chaos, and refined to achieve genuine operational autonomy.
+            </p>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="reveal">
+        <div class="section-header">
+            <div class="section-label">Investment Structure</div>
+            <h2 class="section-title">Acquire Digital Sovereignty</h2>
+        </div>
+
+        <div class="pricing-card">
+            <div class="pricing-badge">Elite Edition</div>
+            <div class="pricing-amount">
+                <span class="pricing-currency">€</span>1,000
+            </div>
+            <div class="pricing-period">Complete Protocol Blueprint</div>
+
+            <ul class="pricing-features">
+                <li>Complete 200+ page architectural documentation</li>
+                <li>All five core system methodologies</li>
+                <li>Proprietary algorithms & scoring matrices</li>
+                <li>God Prompt library (1,000+ lines)</li>
+                <li>Technical integration frameworks</li>
+                <li>Implementation roadmaps & decision trees</li>
+                <li>Security & privacy architectures</li>
+                <li>Case studies & strategic scenarios</li>
+                <li>Ethical guidelines & legal frameworks</li>
+                <li>Lifetime access to all future updates</li>
+            </ul>
+
+            <div style="margin-top: 3rem;">
+                <a href="https://ciprianstefanplesca.gumroad.com/l/thesentinelprotocol" class="btn btn-primary" target="_blank" style="font-size: 1.1rem; padding: 1.5rem 4rem;">
+                    Acquire The Sentinel Protocol
+                </a>
+            </div>
+
+            <p class="section-description" style="margin-top: 2rem; color: var(--color-text-muted);">
+                Secure transaction processing via Gumroad. Instant digital delivery. All major payment methods accepted.
+            </p>
+        </div>
+
+        <div class="content-block" style="margin-top: 4rem;">
+            <div class="highlight-box">
+                <h4>Why This Price Point?</h4>
+                <p>
+                    €1,000 is not an arbitrary figure—it's a deliberate barrier to entry. This price ensures the Protocol remains in the hands of operators who understand value rather than cost, strategy rather than tactics, sovereignty rather than convenience.
+                </p>
+                <p style="margin-top: 1rem;">
+                    The knowledge contained in this system could prevent a single catastrophic business mistake worth €100,000+, generate an additional €75,000+ in annual revenue through negotiation optimization, or reclaim €375,000+ in annual executive time value.
+                </p>
+                <p style="margin-top: 1rem;">
+                    For the right operator, this is the most asymmetric return-on-investment decision they will make this decade.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophical Foundation Section -->
+    <section class="reveal">
+        <div class="section-header">
+            <div class="section-label">Foundational Philosophy</div>
+            <h2 class="section-title">The Level 10 Mindset</h2>
+        </div>
+
+        <div class="content-block">
+            <p>
+                The Sentinel Protocol emerges from a fundamental reconception of what business automation should be. This is not about learning tools—it's about architecting consciousness.
+            </p>
+
+            <h3>The Core Philosophical Premises:</h3>
+
+            <h4>1. Business is Emotional Transfer, Not Data Processing</h4>
+            <p>
+                Every transaction, every partnership, every negotiation succeeds or fails based on emotional dynamics—trust, urgency, perceived value, fear of loss. Systems that cannot perceive and process emotion are blind to the actual mechanisms of business.
+            </p>
+
+            <h4>2. Attention is the Only Non-Renewable Resource</h4>
+            <p>
+                You can generate more money. You can hire more people. You can acquire more technology. But you cannot manufacture more attention. Decision fatigue is not a productivity problem—it's an existential threat to strategic capacity.
+            </p>
+
+            <h4>3. Automation Should Increase Human Capacity, Not Replace It</h4>
+            <p>
+                Traditional automation treats humans as the problem to be eliminated. Sentinel treats humans as the strategic asset to be protected and amplified. The system exists to shield your irreplaceable cognitive capacity for genuine strategic thinking.
+            </p>
+
+            <h4>4. True Sovereignty Requires Total Control</h4>
+            <p>
+                Any system you don't fully own is a liability. Platform dependence is organizational fragility. Data you cannot access without internet connectivity or third-party permission is not your data—it's a hostage.
+            </p>
+
+            <h4>5. Perfection is the Enemy of Authenticity</h4>
+            <p>
+                AI systems that generate flawlessly polite, grammatically perfect communications are immediately identifiable as artificial. The Neural Persona deliberately replicates your strategic imperfections—your casualness, your directness, your specific voice—because authenticity beats polish in relationship contexts.
+            </p>
+
+            <div class="quote-block">
+                "We are not building better tools. We are architecting a fundamentally different relationship between human intelligence and digital systems—one where technology serves sovereignty rather than creating new forms of servitude."
+                <span class="quote-author">— The Sentinel Philosophy</span>
+            </div>
+        </div>
+
+        <div class="content-block">
+            <h3>Beyond the Protocol: The Sovereign Architect</h3>
+
+            <p>
+                Implementing the Sentinel Protocol is not merely a technical project—it's a transformation in how you conceptualize your role as a business leader. You move from operator to architect, from reactive to proactive, from overwhelmed to sovereign.
+            </p>
+
+            <h4>The World is Splitting in Two:</h4>
+            <ul>
+                <li><strong>Those who are automated:</strong> Reacting to notifications, drowning in inboxes, making compromised decisions under time pressure and cognitive fatigue</li>
+                <li><strong>Those who own the automation:</strong> Operating from positions of total informational superiority, protected cognitive capacity, and strategic clarity</li>
+            </ul>
+
+            <p>
+                The gap between these two groups will widen exponentially. Those who master emotional AI will operate in a different league—not just more efficient, but fundamentally more capable.
+            </p>
+
+            <div class="highlight-box">
+                <h4>Your Decision Point</h4>
+                <p>
+                    This is not a purchase decision—it's a positioning decision. Are you content operating within the conventional paradigm of "productivity tools," or are you ready to architect a genuinely sovereign operating system?
+                </p>
+                <p style="margin-top: 1rem;">
+                    The Protocol is ready. The only remaining variable is your decision to execute.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Author Section -->
+    <section class="reveal">
+        <div class="section-header">
+            <div class="section-label">The Architect</div>
+            <h2 class="section-title">Ciprian Ștefan Pleșca (Stefano D'angello)</h2>
+        </div>
+
+        <div class="content-block">
+            <p>
+                The Sentinel Protocol represents the synthesis of years spent operating at the intersection of advanced AI systems, high-stakes business operations, and cognitive psychology. This is not theoretical—it's battle-tested operational intelligence.
+            </p>
+
+            <h3>The Background:</h3>
+
+            <p>
+                Operating under the strategic pseudonym Stefano D'angello, Ciprian Ștefan Pleșca has architected automation systems for elite consultancies, venture-backed startups, and high-net-worth individuals who cannot afford the luxury of decision fatigue or informational disadvantage.
+            </p>
+
+            <h4>What Makes This System Unique:</h4>
+
+            <ul class="feature-list">
+                <li>
+                    <div class="feature-icon">🎯</div>
+                    <div class="feature-content">
+                        <h4>Multi-Disciplinary Synthesis</h4>
+                        <p>The Protocol emerged from the convergence of AI engineering, behavioral psychology, negotiation theory, biometric science, and strategic business operations. Most automation specialists understand technology but not business. Most business consultants understand strategy but not systems. This protocol bridges both.</p>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="feature-icon">🔬</div>
+                    <div class="feature-content">
+                        <h4>Empirical Development Methodology</h4>
+                        <p>Every algorithm, every scoring matrix, every strategic framework has been tested in live business environments with real financial consequences. This is not academic theory—it's field-proven tactical intelligence.</p>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="feature-icon">🛡️</div>
+                    <div class="feature-content">
+                        <h4>Sovereignty-First Design</h4>
+                        <p>Unlike conventional automation advocates who promote platform dependence, this system is architected for total operational independence. You own your data, control your infrastructure, and maintain complete strategic autonomy.</p>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="quote-block">
+                "I built the Sentinel Protocol because I was tired of watching brilliant entrepreneurs become slaves to their own success—drowning in digital noise while their strategic capacity atrophied. This system is the antidote."
+                <span class="quote-author">— Ciprian Ștefan Pleșca</span>
+            </div>
+        </div>
+
+        <div class="content-block">
+            <h3>The Vision:</h3>
+
+            <p>
+                The Sentinel Protocol is not just a product—it's the foundation of a new category: Neural Business Operating Systems. As AI capabilities accelerate, the competitive advantage will belong to those who can deploy emotional intelligence at machine speed.
+            </p>
+
+            <p>
+                This is the first iteration. But it represents a clear vision of where elite business operations are heading: toward total cognitive sovereignty, where human intelligence is protected and amplified by systems that understand not just what we say, but what we mean.
+            </p>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="reveal">
+        <div class="section-header">
+            <div class="section-label">Common Questions</div>
+            <h2 class="section-title">Critical Clarifications</h2>
+        </div>
+
+        <div class="content-block">
+            <h4>Is this just another AI automation course?</h4>
+            <p>
+                No. The Sentinel Protocol is not a tutorial on configuring Zapier or writing ChatGPT prompts. It's a comprehensive operating system architecture that treats business automation as an engineering discipline, not a skill-building exercise. You're acquiring intellectual property, not attending a workshop.
+            </p>
+
+            <h4>Do I need technical expertise to implement this?</h4>
+            <p>
+                The €1,000 Protocol provides complete architectural knowledge accessible to anyone with strategic business understanding. However, full technical implementation—server deployment, database configuration, API integration—requires either personal technical capability or access to qualified engineering resources. The optional €10,000-€15,000 implementation package provides turnkey deployment.
+            </p>
+
+            <h4>Will this work with my existing business systems?</h4>
+            <p>
+                The Protocol is designed as infrastructure-agnostic. It integrates with standard email systems (Gmail, Outlook), CRM platforms (Salesforce, HubSpot), calendar applications (Google Calendar, Outlook), and biometric devices (Oura, Whoop, Apple Watch, Garmin). Specific integration details depend on your exact technology stack.
+            </p>
+
+            <h4>How is this different from using ChatGPT or Claude directly?</h4>
+            <p>
+                ChatGPT and Claude are powerful tools, but they're general-purpose. The Sentinel Protocol is a specialized architecture that employs these tools (and others) within a sophisticated framework of scoring algorithms, decision trees, biometric integration, and strategic automation. It's the difference between owning a hammer and owning a complete construction system.
+            </p>
+
+            <h4>What about data privacy and security?</h4>
+            <p>
+                Unlike cloud-dependent systems, Sentinel employs local-first architecture with three-layer anonymization, zero-knowledge storage, and encrypted communication tunnels. Your business intelligence remains on infrastructure you control. Even database administrators cannot access your strategic data without your private encryption key.
+            </p>
+
+            <h4>Is there ongoing subscription or licensing?</h4>
+            <p>
+                No. The €1,000 purchase provides lifetime access to the Protocol intellectual property, including all future architectural updates and methodology refinements. You own the knowledge permanently. The only ongoing costs are standard infrastructure expenses (server hosting, API usage) that you control directly.
+            </p>
+
+            <h4>Can I share this with my team or colleagues?</h4>
+            <p>
+                The Protocol purchase includes an implicit non-disclosure agreement. The architectural knowledge, algorithms, and strategic frameworks represent proprietary intellectual property. Unauthorized distribution violates copyright and activates legal protection protocols. However, you can implement the system for your own organization and train your team on its operation.
+            </p>
+
+            <h4>What if my business is too small for this level of sophistication?</h4>
+            <p>
+                If you're asking this question, you're probably not the ideal candidate. The Protocol is designed for operators where individual decisions regularly involve €10,000+ consequences and executive time is valued at €500+/hour. For businesses where these conditions don't apply, conventional productivity tools are likely more appropriate.
+            </p>
+
+            <h4>How long does implementation take?</h4>
+            <p>
+                Self-implementation timelines vary widely based on technical expertise and system complexity—typically 40-120 hours over 4-8 weeks. Professional implementation through the turnkey package delivers operational systems within 3-4 weeks, with full optimization achieved over the subsequent 60 days as the AI learns your specific patterns.
+            </p>
+
+            <h4>What guarantees do you offer?</h4>
+            <p>
+                This is intellectual property transfer, not a service subscription. There are no refunds after purchase, as you gain immediate access to complete architectural knowledge. However, the methodologies are proven through extensive real-world application. The risk is not whether the system works—it demonstrably does—but whether you possess the organizational will to implement it.
+            </p>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="cta-section">
+        <div class="section-header">
+            <h2>The Decision Point</h2>
+            <p class="section-description">
+                You now understand what the Sentinel Protocol is, how it works, and why it represents a fundamental shift in business operations. The only remaining variable is your decision to execute.
+            </p>
+        </div>
+
+        <div class="content-block">
+            <p style="text-align: center; font-size: 1.1rem; color: var(--color-text-muted); margin-bottom: 3rem;">
+                Every day you operate without this system, you're making decisions in compromised cognitive states, responding to communications without strategic intelligence, and negotiating from positions of informational disadvantage.
+            </p>
+
+            <p style="text-align: center; font-size: 1.1rem; color: var(--color-text-muted); margin-bottom: 3rem;">
+                The competitive gap between those who possess emotional AI and those who don't will widen exponentially. This is your opportunity to position yourself on the right side of that divide.
+            </p>
+
+            <div style="text-align: center;">
+                <a href="https://ciprianstefanplesca.gumroad.com/l/thesentinelprotocol" class="btn btn-primary" target="_blank" style="font-size: 1.25rem; padding: 1.75rem 4.5rem;">
+                    Acquire The Sentinel Protocol - €1,000
+                </a>
+            </div>
+
+            <p style="text-align: center; font-size: 0.9rem; color: var(--color-text-muted); margin-top: 2rem;">
+                Secure payment processing via Gumroad • Instant digital delivery • Lifetime access
+            </p>
+        </div>
+    </section>
+
+    <!-- Legal Section -->
+    <section class="reveal">
+        <div class="section-header">
+            <div class="section-label">Legal Framework</div>
+            <h2 class="section-title">Intellectual Property & Terms</h2>
+        </div>
+
+        <div class="content-block">
+            <h3>Copyright & Ownership</h3>
+            <p>
+                This document, the Sentinel Protocol methodology, and all associated concepts including but not limited to "The Sentinel Cortex," "Neural Persona," "Energy Shield," "Ghost Negotiation Matrix," "Sovereign Path," "DEFCON Protocol," "The Turing Gate," and "Bio-Digital Sync" represent the exclusive intellectual property of Ciprian Ștefan Pleșca, operating under the strategic brand Stefano D'angello.
+            </p>
+
+            <p style="font-weight: 600; margin-top: 2rem;">
+                ALL RIGHTS RESERVED © 2026 Ciprian Ștefan Pleșca. All rights reserved.
+            </p>
+
+            <p style="font-weight: 600; margin-top: 1rem;">
+                LocalPulse.pro™ is a proprietary intellectual property asset owned and operated by Ciprian Ștefan Pleșca.
+            </p>
+
+            <h4>Content Protection Notice</h4>
+            <p>
+                Any reproduction, distribution, modification, derivative works, public display, or commercial use of these methodologies without prior written consent constitutes a serious violation of copyright and intellectual property rights and will be prosecuted to the full extent of applicable law.
+            </p>
+
+            <h4>Limitation of Liability</h4>
+            <p>
+                Ciprian Ștefan Pleșca is not responsible for business decisions, outcomes, or consequences resulting from implementation of methodologies described in the Sentinel Protocol. The Protocol is an instrument of operational enhancement; the purchaser assumes full responsibility for implementation, supervision, and utilization of autonomous systems.
+            </p>
+
+            <h4>Confidentiality Agreement</h4>
+            <p>
+                Purchase of the Sentinel Protocol constitutes acceptance of an implicit non-disclosure agreement. Sharing, distributing, or publicly disclosing proprietary algorithms, scoring matrices, prompt architectures, or strategic frameworks to third parties violates this agreement and activates intellectual asset protection protocols.
+            </p>
+
+            <h4>Uniqueness Certification</h4>
+            <p>
+                The Sentinel Protocol is the only system of its type authorized and authenticated under the D'angello/Pleșca architectural vision. Any imitation, unauthorized derivative, or competitive system claiming similar methodology represents a degraded approximation of the original and does not benefit from the support, updates, or guarantee of the mother architecture.
+            </p>
+
+            <h4>No Warranties</h4>
+            <p>
+                While the methodologies described have been proven effective in real-world business environments, results are dependent on proper implementation, user context, and external factors beyond the control of the Protocol architect. No specific financial outcomes are guaranteed.
+            </p>
+
+            <h4>Governing Law</h4>
+            <p>
+                This intellectual property and all associated transactions are governed by applicable international copyright law and Romanian jurisdiction. Any disputes shall be resolved through binding arbitration in accordance with Romanian legal standards.
+            </p>
+
+            <div class="quote-block" style="margin-top: 3rem;">
+                "This system is an instrument of immense power. Implement it with the rigor of an engineer and the ethics of a leader. Sentinel does not replace you—it liberates you to become the best version of yourself."
+                <span class="quote-author">— Oath of Completion, The Sentinel Protocol</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">🛡 THE SENTINEL PROTOCOL</div>
+            <p class="footer-text">
+                The world's first Business Operating System based on Neural Emotional Intelligence.<br>
+                Architected for elite entrepreneurs who refuse to be slaves to their own success.
+            </p>
+            <div style="margin: 2rem 0;">
+                <a href="https://ciprianstefanplesca.gumroad.com/l/thesentinelprotocol" class="btn btn-primary" target="_blank">
+                    Acquire the Protocol
+                </a>
+            </div>
+            <div class="copyright">
+                <p>© 2026 Ciprian Ștefan Pleșca. All rights reserved.</p>
+                <p style="margin-top: 0.5rem;">LocalPulse.pro™ is a proprietary intellectual property asset owned and operated by Ciprian Ștefan Pleșca.</p>
+                <p style="margin-top: 1rem; font-size: 0.75rem;">
+                    All concepts, methodologies, architectures, and frameworks described herein are protected intellectual property.<br>
+                    Unauthorized reproduction or distribution is strictly prohibited.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll reveal animation
+        const reveals = document.querySelectorAll('.reveal');
+        
+        function checkReveal() {
+            reveals.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', checkReveal);
+        checkReveal(); // Check on load
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

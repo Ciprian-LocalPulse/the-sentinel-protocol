@@ -1,0 +1,1993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="THE SENTINEL PROTOCOL — The World's First Business Operating System Based on Neural Emotional Intelligence. Built for elite entrepreneurs who refuse to be slaves to their own success.">
+<meta property="og:title" content="THE SENTINEL PROTOCOL — Neural Emotional Intelligence OS">
+<meta property="og:description" content="Beyond automation. Towards digital sovereignty. The enterprise system that perceives, processes, and responds to the subtextual dynamics of business.">
+<title>THE SENTINEL PROTOCOL — Neural Business Operating System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --void: #05050a;
+  --base: #080810;
+  --surface: #0d0d18;
+  --panel: #11111f;
+  --lifted: #171728;
+  --gold: #c9a84c;
+  --gold-bright: #e8c76a;
+  --gold-dim: #8a6e2f;
+  --gold-ghost: rgba(201,168,76,0.08);
+  --gold-glow: rgba(201,168,76,0.22);
+  --text: #eeeef5;
+  --text-2: #9898b0;
+  --text-3: #4a4a62;
+  --border: rgba(201,168,76,0.14);
+  --border-b: rgba(255,255,255,0.05);
+  --font-d: 'Playfair Display', Georgia, serif;
+  --font-b: 'DM Sans', sans-serif;
+  --font-m: 'DM Mono', monospace;
+  --r: 3px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-b);
+  background: var(--void);
+  color: var(--text);
+  line-height: 1.7;
+  overflow-x: hidden;
+  font-size: 16px;
+}
+
+/* ─── NOISE OVERLAY ─── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  opacity: 0.6;
+  pointer-events: none;
+  z-index: 9998;
+}
+
+/* ─── AMBIENT GLOW ─── */
+.ambient {
+  position: fixed;
+  pointer-events: none;
+  z-index: 0;
+}
+.ambient-1 {
+  top: -20vh;
+  left: -10vw;
+  width: 70vw;
+  height: 70vh;
+  background: radial-gradient(ellipse, rgba(201,168,76,0.04) 0%, transparent 70%);
+}
+.ambient-2 {
+  bottom: -20vh;
+  right: -10vw;
+  width: 60vw;
+  height: 60vh;
+  background: radial-gradient(ellipse, rgba(201,168,76,0.03) 0%, transparent 70%);
+  animation: drift 20s ease-in-out infinite alternate;
+}
+@keyframes drift { from { transform: translate(0,0); } to { transform: translate(-40px, -60px); } }
+
+/* ─── GRID BG ─── */
+.grid-bg {
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(201,168,76,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,168,76,0.025) 1px, transparent 1px);
+  background-size: 80px 80px;
+  pointer-events: none;
+  z-index: 0;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  background: rgba(5,5,10,0.88);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border);
+}
+
+nav::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 10%; right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0.4;
+}
+
+.nav-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  font-family: var(--font-d);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.06em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-logo-shield {
+  width: 26px;
+  height: 26px;
+  border: 1.5px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  background: var(--gold-ghost);
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.nav-link {
+  font-family: var(--font-m);
+  font-size: 11px;
+  color: var(--text-2);
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.nav-link:hover { color: var(--gold); }
+
+.nav-btn {
+  font-family: var(--font-m);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 9px 22px;
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  text-decoration: none;
+  transition: all 0.25s;
+  clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+}
+.nav-btn:hover {
+  background: var(--gold);
+  color: var(--void);
+  box-shadow: 0 0 30px var(--gold-glow);
+}
+
+.nav-btn-primary {
+  background: var(--gold);
+  color: var(--void);
+  font-weight: 600;
+}
+.nav-btn-primary:hover {
+  background: var(--gold-bright);
+  color: var(--void);
+  box-shadow: 0 0 40px var(--gold-glow);
+}
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 40px 80px;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.hero-orb {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  border: 1px solid rgba(201,168,76,0.06);
+  animation: orb-spin 30s linear infinite;
+}
+.hero-orb::before {
+  content: '';
+  position: absolute;
+  inset: 30px;
+  border-radius: 50%;
+  border: 1px solid rgba(201,168,76,0.08);
+  animation: orb-spin 20s linear infinite reverse;
+}
+.hero-orb::after {
+  content: '';
+  position: absolute;
+  inset: 80px;
+  border-radius: 50%;
+  border: 1px solid rgba(201,168,76,0.05);
+  animation: orb-spin 15s linear infinite;
+}
+@keyframes orb-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+.hero-center-glow {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
+  animation: breathe 6s ease-in-out infinite;
+}
+@keyframes breathe { 0%,100% { opacity: 0.6; transform: translate(-50%,-50%) scale(1); } 50% { opacity: 1; transform: translate(-50%,-50%) scale(1.15); } }
+
+.hero-content {
+  max-width: 960px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-m);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 32px;
+  opacity: 0;
+  animation: fade-up 0.8s ease 0.2s forwards;
+}
+.hero-eyebrow::before, .hero-eyebrow::after {
+  content: '';
+  width: 48px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold));
+}
+.hero-eyebrow::after { background: linear-gradient(90deg, var(--gold), transparent); }
+
+.hero-badge-strip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(201,168,76,0.3);
+  background: rgba(201,168,76,0.06);
+  padding: 6px 16px;
+  font-family: var(--font-m);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 40px;
+  opacity: 0;
+  animation: fade-up 0.8s ease 0.3s forwards;
+}
+.badge-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--gold);
+  animation: pulse-dot 2s infinite;
+}
+@keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.7)} }
+
+.hero h1 {
+  font-family: var(--font-d);
+  font-size: clamp(48px, 8vw, 96px);
+  font-weight: 900;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: fade-up 1s ease 0.4s forwards;
+}
+
+.h1-line1 {
+  display: block;
+  background: linear-gradient(135deg, var(--text) 40%, var(--gold-bright) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.h1-line2 {
+  display: block;
+  color: var(--gold);
+  text-shadow: 0 0 60px rgba(201,168,76,0.4);
+  font-style: italic;
+}
+
+.hero-sub {
+  font-size: clamp(16px, 2.5vw, 21px);
+  color: var(--text-2);
+  max-width: 680px;
+  margin: 0 auto 52px;
+  font-weight: 300;
+  line-height: 1.8;
+  opacity: 0;
+  animation: fade-up 1s ease 0.6s forwards;
+}
+
+.hero-sub strong {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 72px;
+  opacity: 0;
+  animation: fade-up 1s ease 0.8s forwards;
+}
+
+.btn-hero-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 40px;
+  background: linear-gradient(135deg, var(--gold-dim), var(--gold));
+  color: var(--void);
+  text-decoration: none;
+  font-family: var(--font-b);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: all 0.3s;
+  clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+}
+.btn-hero-primary:hover {
+  background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+  transform: translateY(-3px);
+  box-shadow: 0 20px 60px rgba(201,168,76,0.35);
+}
+
+.btn-hero-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 40px;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-2);
+  text-decoration: none;
+  font-family: var(--font-b);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  transition: all 0.3s;
+  clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+}
+.btn-hero-secondary:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: var(--gold-ghost);
+}
+
+.hero-metrics {
+  display: flex;
+  gap: 0;
+  justify-content: center;
+  border: 1px solid var(--border);
+  max-width: 700px;
+  margin: 0 auto;
+  opacity: 0;
+  animation: fade-up 1s ease 1s forwards;
+}
+.metric-item {
+  flex: 1;
+  padding: 24px 20px;
+  text-align: center;
+  border-right: 1px solid var(--border);
+  position: relative;
+}
+.metric-item:last-child { border-right: none; }
+.metric-item::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%; transform: translateX(-50%);
+  width: 40%;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.5;
+}
+.metric-num {
+  font-family: var(--font-d);
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.metric-label {
+  font-family: var(--font-m);
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  color: var(--text-3);
+  text-transform: uppercase;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── SEPARATOR ─── */
+.sep {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  margin: 0;
+}
+
+/* ─── PRODUCT HUNT BANNER ─── */
+.launch-banner {
+  background: linear-gradient(135deg, rgba(201,168,76,0.06), rgba(201,168,76,0.12));
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 20px 40px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+.launch-banner-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.launch-flag {
+  font-family: var(--font-m);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border: 1px solid var(--gold);
+  background: rgba(201,168,76,0.1);
+}
+.launch-text {
+  font-size: 14px;
+  color: var(--text-2);
+}
+.launch-text strong { color: var(--text); font-weight: 600; }
+.launch-cta-sm {
+  font-family: var(--font-m);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  text-decoration: none;
+  border-bottom: 1px solid var(--gold-dim);
+  transition: all 0.2s;
+}
+.launch-cta-sm:hover { color: var(--gold-bright); border-color: var(--gold-bright); }
+
+/* ─── SECTION COMMONS ─── */
+.container { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
+.section { padding: 100px 0; position: relative; z-index: 1; }
+.section-sm { padding: 60px 0; position: relative; z-index: 1; }
+
+.section-eyebrow {
+  font-family: var(--font-m);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-eyebrow::before {
+  content: '';
+  width: 32px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.6;
+}
+
+.section-title {
+  font-family: var(--font-d);
+  font-size: clamp(32px, 5vw, 54px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin-bottom: 20px;
+}
+.section-title .accent { color: var(--gold); font-style: italic; }
+
+.section-desc {
+  font-size: 18px;
+  color: var(--text-2);
+  line-height: 1.8;
+  max-width: 620px;
+  font-weight: 300;
+}
+
+/* ─── THE PROBLEM SECTION ─── */
+.problem-section { background: var(--base); }
+
+.problem-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-top: 60px;
+}
+
+.problem-cell {
+  background: var(--surface);
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+.problem-cell:hover { background: var(--panel); }
+
+.problem-cell::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px;
+  height: 0;
+  background: var(--gold);
+  transition: height 0.4s ease;
+}
+.problem-cell:hover::before { height: 100%; }
+
+.problem-num {
+  font-family: var(--font-d);
+  font-size: 60px;
+  font-weight: 900;
+  color: rgba(201,168,76,0.07);
+  line-height: 1;
+  margin-bottom: 12px;
+  letter-spacing: -0.04em;
+}
+.problem-icon {
+  font-size: 28px;
+  margin-bottom: 16px;
+}
+.problem-title {
+  font-family: var(--font-d);
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+.problem-desc { color: var(--text-2); font-size: 15px; line-height: 1.7; }
+
+/* ─── PILLARS SECTION ─── */
+.pillars-section { background: var(--void); }
+
+.pillar-list { margin-top: 64px; }
+
+.pillar-item {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 0;
+  border: 1px solid var(--border);
+  margin-bottom: -1px;
+  transition: all 0.3s;
+  cursor: default;
+  overflow: hidden;
+}
+.pillar-item:hover {
+  border-color: var(--gold-dim);
+  z-index: 2;
+  position: relative;
+}
+.pillar-item:hover .pillar-body { background: rgba(201,168,76,0.03); }
+
+.pillar-num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  font-family: var(--font-d);
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--gold-dim);
+  padding: 40px 20px;
+  transition: all 0.3s;
+}
+.pillar-item:hover .pillar-num {
+  background: rgba(201,168,76,0.08);
+  color: var(--gold);
+}
+
+.pillar-body { padding: 36px 44px; background: var(--surface); }
+.pillar-label {
+  font-family: var(--font-m);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.pillar-name {
+  font-family: var(--font-d);
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+.pillar-desc { color: var(--text-2); font-size: 15px; line-height: 1.75; max-width: 700px; }
+
+/* ─── DEFCON SECTION ─── */
+.defcon-section {
+  background: var(--base);
+  position: relative;
+  overflow: hidden;
+}
+.defcon-section::before {
+  content: 'DEFCON';
+  position: absolute;
+  right: -60px;
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+  font-family: var(--font-d);
+  font-size: 180px;
+  font-weight: 900;
+  color: rgba(201,168,76,0.02);
+  letter-spacing: 0.05em;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.defcon-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-top: 60px;
+}
+
+.defcon-card {
+  background: var(--surface);
+  padding: 36px 32px;
+  position: relative;
+  transition: background 0.25s;
+}
+.defcon-card:hover { background: var(--panel); }
+
+.defcon-level {
+  font-family: var(--font-m);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--text-3);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.defcon-number {
+  font-family: var(--font-d);
+  font-size: 48px;
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.defcon-1 .defcon-number { color: #ff4466; }
+.defcon-2 .defcon-number { color: #ff8800; }
+.defcon-3 .defcon-number { color: var(--gold); }
+.defcon-4 .defcon-number { color: #44aaff; }
+.defcon-5 .defcon-number { color: var(--text-3); }
+.defcon-g .defcon-number { color: #aa88ff; font-size: 28px; padding-top: 10px; }
+
+.defcon-name {
+  font-family: var(--font-d);
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  margin-top: 4px;
+}
+.defcon-desc { font-size: 13px; color: var(--text-2); line-height: 1.65; }
+
+.defcon-bar {
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%;
+  height: 2px;
+}
+.defcon-1 .defcon-bar { background: #ff4466; }
+.defcon-2 .defcon-bar { background: #ff8800; }
+.defcon-3 .defcon-bar { background: var(--gold); }
+.defcon-4 .defcon-bar { background: #44aaff; }
+.defcon-5 .defcon-bar { background: var(--text-3); }
+.defcon-g .defcon-bar { background: #aa88ff; }
+
+/* ─── CASE STUDIES ─── */
+.cases-section { background: var(--void); }
+
+.case-card {
+  border: 1px solid var(--border);
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+
+.case-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 36px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+}
+
+.case-title-group { display: flex; align-items: center; gap: 16px; }
+.case-idx {
+  font-family: var(--font-m);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  border: 1px solid var(--gold-dim);
+  padding: 3px 8px;
+}
+.case-name {
+  font-family: var(--font-d);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.case-result-badge {
+  font-family: var(--font-m);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: #22cc88;
+  border: 1px solid rgba(34,204,136,0.3);
+  background: rgba(34,204,136,0.06);
+  padding: 5px 14px;
+  white-space: nowrap;
+}
+
+.case-body { padding: 36px; background: var(--base); display: none; }
+.case-body.open { display: block; }
+
+.case-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 24px;
+}
+.case-col-label {
+  font-family: var(--font-m);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.case-text { font-size: 14px; color: var(--text-2); line-height: 1.75; }
+.case-text strong { color: var(--text); font-weight: 500; }
+
+.case-steps {
+  list-style: none;
+  margin-top: 8px;
+}
+.case-steps li {
+  font-size: 13px;
+  color: var(--text-2);
+  padding: 6px 0 6px 20px;
+  position: relative;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  line-height: 1.5;
+}
+.case-steps li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-size: 11px;
+}
+
+.case-outcome {
+  background: rgba(34,204,136,0.05);
+  border: 1px solid rgba(34,204,136,0.15);
+  border-left: 3px solid #22cc88;
+  padding: 20px 24px;
+  margin-top: 24px;
+}
+.case-outcome-label {
+  font-family: var(--font-m);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: #22cc88;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.case-outcome-text {
+  font-size: 15px;
+  color: var(--text);
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.case-chevron {
+  color: var(--gold-dim);
+  font-size: 18px;
+  transition: transform 0.3s;
+}
+.case-chevron.open { transform: rotate(180deg); }
+
+/* ─── WHAT YOU GET ─── */
+.get-section { background: var(--base); }
+
+.get-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-top: 60px;
+}
+
+.get-item {
+  background: var(--surface);
+  padding: 36px;
+  position: relative;
+  transition: background 0.25s;
+  overflow: hidden;
+}
+.get-item:hover { background: var(--panel); }
+.get-item::after {
+  content: attr(data-n);
+  position: absolute;
+  bottom: -10px; right: 16px;
+  font-family: var(--font-d);
+  font-size: 80px;
+  font-weight: 900;
+  color: rgba(201,168,76,0.04);
+  pointer-events: none;
+  line-height: 1;
+}
+
+.get-icon { font-size: 28px; margin-bottom: 16px; }
+.get-title {
+  font-family: var(--font-d);
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--text);
+}
+.get-desc { font-size: 14px; color: var(--text-2); line-height: 1.7; }
+
+/* ─── PRICING ─── */
+.pricing-section { background: var(--void); }
+
+.pricing-wrap {
+  max-width: 800px;
+  margin: 60px auto 0;
+  border: 1px solid var(--gold-dim);
+  position: relative;
+  overflow: hidden;
+}
+.pricing-wrap::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--gold-dim), var(--gold), var(--gold-bright), var(--gold));
+}
+.pricing-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.pricing-left {
+  padding: 56px 48px;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+}
+.pricing-badge-sm {
+  display: inline-block;
+  font-family: var(--font-m);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  text-transform: uppercase;
+  border: 1px solid var(--gold-dim);
+  padding: 4px 12px;
+  margin-bottom: 24px;
+  background: var(--gold-ghost);
+}
+
+.pricing-amount {
+  font-family: var(--font-d);
+  font-size: 72px;
+  font-weight: 900;
+  color: var(--gold);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-shadow: 0 0 60px rgba(201,168,76,0.3);
+}
+.pricing-currency { font-size: 36px; vertical-align: super; }
+.pricing-period {
+  font-family: var(--font-m);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--text-3);
+  text-transform: uppercase;
+  margin-top: 8px;
+  margin-bottom: 36px;
+}
+
+.pricing-cta {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, var(--gold-dim), var(--gold));
+  color: var(--void);
+  text-align: center;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: all 0.3s;
+  margin-bottom: 16px;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+}
+.pricing-cta:hover {
+  background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+  box-shadow: 0 12px 40px rgba(201,168,76,0.35);
+  transform: translateY(-2px);
+}
+
+.pricing-cal {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  border: 1px solid var(--border);
+  color: var(--text-2);
+  text-align: center;
+  text-decoration: none;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  transition: all 0.25s;
+}
+.pricing-cal:hover {
+  border-color: var(--gold-dim);
+  color: var(--gold);
+  background: var(--gold-ghost);
+}
+
+.pricing-secure {
+  font-family: var(--font-m);
+  font-size: 10px;
+  color: var(--text-3);
+  letter-spacing: 0.1em;
+  text-align: center;
+  margin-top: 16px;
+}
+
+.pricing-right {
+  padding: 48px 44px;
+  background: var(--base);
+}
+.pricing-features-title {
+  font-family: var(--font-m);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  color: var(--text-3);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.pricing-feat-list { list-style: none; }
+.pricing-feat-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 11px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.5;
+}
+.pricing-feat-list li:last-child { border-bottom: none; }
+.feat-check {
+  color: var(--gold);
+  font-weight: bold;
+  font-size: 14px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.pricing-roi {
+  margin-top: 24px;
+  padding: 20px;
+  background: rgba(201,168,76,0.05);
+  border: 1px solid var(--border);
+}
+.roi-label {
+  font-family: var(--font-m);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.roi-text { font-size: 13px; color: var(--text-2); line-height: 1.6; }
+.roi-text strong { color: var(--gold); }
+
+/* ─── CONTACT SECTION ─── */
+.contact-section {
+  background: var(--base);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.contact-card {
+  border: 1px solid var(--border);
+  overflow: hidden;
+  transition: border-color 0.3s;
+}
+.contact-card:hover { border-color: var(--gold-dim); }
+.contact-card-header {
+  padding: 20px 28px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.contact-card-icon { font-size: 20px; }
+.contact-card-label {
+  font-family: var(--font-m);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+.contact-card-body { padding: 28px; background: var(--base); }
+.contact-value {
+  font-size: 16px;
+  color: var(--text);
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+.contact-link {
+  display: inline-block;
+  font-size: 15px;
+  color: var(--gold);
+  text-decoration: none;
+  border-bottom: 1px solid var(--gold-dim);
+  transition: all 0.2s;
+  padding-bottom: 2px;
+}
+.contact-link:hover {
+  color: var(--gold-bright);
+  border-color: var(--gold-bright);
+}
+.contact-desc { font-size: 13px; color: var(--text-3); margin-top: 8px; }
+
+/* ─── WHO IS THIS FOR ─── */
+.ideal-section { background: var(--void); }
+
+.ideal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-top: 60px;
+}
+.ideal-item {
+  background: var(--surface);
+  padding: 36px 28px;
+  transition: background 0.25s;
+}
+.ideal-item:hover { background: var(--panel); }
+.ideal-item-icon { font-size: 30px; margin-bottom: 20px; }
+.ideal-item-title {
+  font-family: var(--font-d);
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.ideal-item-desc { font-size: 14px; color: var(--text-2); line-height: 1.7; }
+
+/* ─── PHILOSOPHY QUOTE ─── */
+.philosophy-section {
+  background: var(--base);
+  position: relative;
+  overflow: hidden;
+}
+.philosophy-section::before {
+  content: '"';
+  position: absolute;
+  top: -40px;
+  left: 40px;
+  font-family: var(--font-d);
+  font-size: 400px;
+  color: rgba(201,168,76,0.025);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.philosophy-inner {
+  max-width: 860px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.philosophy-quote {
+  font-family: var(--font-d);
+  font-size: clamp(22px, 3.5vw, 38px);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--text);
+  margin-bottom: 32px;
+}
+.philosophy-attr {
+  font-family: var(--font-m);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+.philosophy-divider {
+  display: inline-block;
+  width: 60px;
+  height: 1px;
+  background: var(--gold);
+  vertical-align: middle;
+  margin: 0 16px;
+  opacity: 0.5;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 56px 40px 36px;
+  position: relative;
+  z-index: 1;
+}
+.footer-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 60px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.footer-brand {}
+.footer-logo {
+  font-family: var(--font-d);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.05em;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.footer-tagline {
+  font-size: 13px;
+  color: var(--text-3);
+  line-height: 1.7;
+  max-width: 320px;
+  margin-bottom: 24px;
+}
+.footer-email {
+  font-family: var(--font-m);
+  font-size: 12px;
+  color: var(--gold);
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  border-bottom: 1px solid var(--gold-dim);
+  padding-bottom: 2px;
+  transition: all 0.2s;
+}
+.footer-email:hover { color: var(--gold-bright); border-color: var(--gold-bright); }
+
+.footer-col {}
+.footer-col-label {
+  font-family: var(--font-m);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  color: var(--text-3);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.footer-links { list-style: none; }
+.footer-links li { margin-bottom: 10px; }
+.footer-links a {
+  font-size: 13px;
+  color: var(--text-2);
+  text-decoration: none;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.footer-links a::before {
+  content: '';
+  width: 12px;
+  height: 1px;
+  background: var(--text-3);
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+.footer-links a:hover { color: var(--gold); }
+.footer-links a:hover::before { background: var(--gold); }
+
+.footer-bottom {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-top: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.footer-copy {
+  font-family: var(--font-m);
+  font-size: 11px;
+  color: var(--text-3);
+  letter-spacing: 0.06em;
+}
+.footer-legal {
+  font-family: var(--font-m);
+  font-size: 10px;
+  color: var(--text-3);
+  letter-spacing: 0.06em;
+  text-align: right;
+}
+
+/* ─── SCROLL REVEAL ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--void); }
+::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 2px; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  .nav-inner { padding: 0 24px; }
+  .problem-grid { grid-template-columns: 1fr; }
+  .pillar-item { grid-template-columns: 60px 1fr; }
+  .defcon-grid { grid-template-columns: repeat(2, 1fr); }
+  .pricing-inner { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; gap: 24px; }
+  .ideal-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-inner { grid-template-columns: 1fr; gap: 36px; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+  .footer-legal { text-align: center; }
+  .case-row { grid-template-columns: 1fr; }
+  .get-grid { grid-template-columns: 1fr; }
+  .hero-metrics { flex-direction: column; }
+  .metric-item { border-right: none; border-bottom: 1px solid var(--border); }
+  .metric-item:last-child { border-bottom: none; }
+  nav .nav-link { display: none; }
+  .container { padding: 0 24px; }
+}
+
+@media (max-width: 600px) {
+  .hero { padding: 90px 24px 60px; }
+  .defcon-grid { grid-template-columns: 1fr; }
+  .ideal-grid { grid-template-columns: 1fr; }
+  .hero-actions { flex-direction: column; align-items: center; }
+  .btn-hero-primary, .btn-hero-secondary { width: 100%; justify-content: center; }
+  .section { padding: 60px 0; }
+  .launch-banner { padding: 16px 24px; }
+  .launch-banner-inner { flex-direction: column; gap: 12px; text-align: center; }
+  .pillar-item { grid-template-columns: 1fr; }
+  .pillar-num { padding: 16px; justify-content: flex-start; border-right: none; border-bottom: 1px solid var(--border); }
+}
+</style>
+</head>
+<body>
+
+<!-- Ambient + BG -->
+<div class="ambient ambient-1"></div>
+<div class="ambient ambient-2"></div>
+<div class="grid-bg"></div>
+
+<!-- Navigation -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <div class="nav-logo-shield">⬡</div>
+      THE SENTINEL PROTOCOL
+    </div>
+    <div class="nav-right">
+      <a href="#pillars" class="nav-link">Architecture</a>
+      <a href="#pricing" class="nav-link">Pricing</a>
+      <a href="mailto:contact@localpulse.pro" class="nav-link">Contact</a>
+      <a href="https://cal.com/ciprian-stefan-plesca" target="_blank" class="nav-btn">Book a Call</a>
+      <a href="https://ciprianstefanplesca.gumroad.com/l/thesentinelprotocol" target="_blank" class="nav-btn nav-btn-primary">Acquire — €1,000</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-orb"></div>
+  <div class="hero-center-glow"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Neural Emotional Intelligence</div>
+    <div class="hero-badge-strip">
+      <span class="badge-dot"></span>
+      Now Launching on IndieHackers — Elite Edition
+    </div>
+    <h1>
+      <span class="h1-line1">THE SENTINEL</span>
+      <span class="h1-line2">PROTOCOL</span>
+    </h1>
+    <p class="hero-sub">
+      The World's First Business Operating System that perceives, processes, and responds to the <strong>emotional dynamics</strong> of high-stakes enterprise operations. Not automation — <strong>digital sovereignty</strong>.
+    </p>
+    <div class="hero-actions">
+      <a href="https://ciprianstefanplesca.gumroad.com/l/thesentinelprotocol" target="_blank" class="btn-hero-primary">
+        ⬡ Acquire the Protocol — €1,000
+      </a>
+      <a href="https://cal.com/ciprian-stefan-plesca" target="_blank" class="btn-hero-secondary">
+        ◎ Book an Architecture Call
+      </a>
+    </div>
+    <div class="hero-metrics">
+      <div class="metric-item">
+        <div class="metric-num">10,000+</div>
+        <div class="metric-label">Dev Hours</div>
+      </div>
+      <div class="metric-item">
+        <div class="metric-num">5</div>
+        <div class="metric-label">Core Systems</div>
+      </div>
+      <div class="metric-item">
+        <div class="metric-num">99%</div>
+        <div class="metric-label">Decision Fatigue Eliminated</div>
+      </div>
+      <div class="metric-item">
+        <div class="metric-num">∞</div>
+        <div class="metric-label">ROI Compounding</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LAUNCH BANNER -->
+<div class="launch-banner reveal">
+  <div class="launch-banner-inner">
+    <span class="launch-flag">🚀 IH Launch</span>
+    <span class="launch-text"><strong>Sentinel Protocol</strong> is live on IndieHackers. Join the elite operators redefining how business gets done.</span>
+    <a href="https://ciprianstefanplesca.gumroad.com/l/thesentinelprotocol" target="_blank" class="launch-cta-sm">Support the Launch →</a>
+  </div>
+</div>
+
+<!-- THE PROBLEM -->
+<section class="section problem-section">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-eyebrow">The Critical Problem</div>
+      <h2 class="section-title">The Paradox of <span class="accent">Modern Automation</span></h2>
+      <p class="section-desc">Traditional automation operates on binary logic—cold, inflexible, emotionally blind. A standard system cannot distinguish a €100K client from a cold prospect. That is not automation. That is a liability.</p>
+    </div>
+    <div class="problem-grid reveal">
+      <div class="problem-cell">
+        <div class="problem-num">01</div>
+        <div class="problem-icon">⚠️</div>
+        <div class="problem-title">Decision Fatigue Epidemic</div>
+        <div class="problem-desc">Every micro-decision consumes cognitive glucose. Elite founders lose their strategic capacity to digital noise before noon. The inbox becomes a cognitive prison.</div>
+      </div>
+      <div class="problem-cell">
+        <div class="problem-num">02</div>
+        <div class="problem-icon">🎭</div>
+        <div class="problem-title">Context Blindness</div>
+        <div class="problem-desc">Standard automation cannot read between the lines. It misses buying signals, fails to detect urgency, and treats every interaction with the same mechanical indifference.</div>
+      </div>
+      <div class="problem-cell">
+        <div class="problem-num">03</div>
+        <div class="problem-icon">⏱️</div>
+        <div class="problem-title">The Expectation Trap</div>
+        <div class="problem-desc">Instant automated responses create dangerous expectations. Your perceived availability undermines your strategic positioning. Responsiveness becomes a weakness.</div>
+      </div>
+      <div class="problem-cell">
+        <div class="problem-num">04</div>
+        <div class="problem-icon">🔒</div>
+        <div class="problem-title">Platform Dependency</div>
+        <div class="problem-desc">Most "automation" chains you to platforms that can change rules overnight. You are building your empire on rented, fragile infrastructure you do not control.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE FIVE PILLARS -->
+<section class="section pillars-section" id="pillars">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-eyebrow">System Architecture</div>
+      <h2 class="section-title">The Five Pillars of<br><span class="accent">Digital Sovereignty</span></h2>
+      <p class="section-desc">Five foundational architectures. Each engineered to address a critical dimension of elite business operations.</p>
+    </div>
+    <div class="pillar-list">
+      <div class="pillar-item reveal">
+        <div class="pillar-num">I</div>
+        <div class="pillar-body">
+          <div class="pillar-label">Core Intelligence</div>
+          <div class="pillar-name">The Sentinel Cortex — Neural Emotional Intelligence</div>
+          <div class="pillar-desc">The central nervous system. Deconstructs every incoming communication into intent vectors, assigns numerical values to subjective variables, and transforms emotion into actionable intelligence. It doesn't just read what someone said — it determines what they <em>meant</em>.</div>
+        </div>
+      </div>
+      <div class="pillar-item reveal reveal-delay-1">
+        <div class="pillar-num">II</div>
+        <div class="pillar-body">
+          <div class="pillar-label">Identity Engine</div>
+          <div class="pillar-name">The Neural Persona — Digital Identity Cloning</div>
+          <div class="pillar-desc">Your Digital Twin. Through stylometric analysis of your communication history, this system replicates your voice, tone, strategic imperfections, and decision-making patterns. It doesn't generate AI text — it produces communications indistinguishable from your own authorship.</div>
+        </div>
+      </div>
+      <div class="pillar-item reveal reveal-delay-2">
+        <div class="pillar-num">III</div>
+        <div class="pillar-body">
+          <div class="pillar-label">Biometric Integration</div>
+          <div class="pillar-name">The Energy Shield — Cognitive Performance Guardian</div>
+          <div class="pillar-desc">The only business system that treats the founder as critical infrastructure. Integrating wearable biometric data (HRV, sleep architecture, cognitive load), this architecture prevents million-euro decisions in states of mental fog. When your biology degrades past threshold, the Shield assumes command.</div>
+        </div>
+      </div>
+      <div class="pillar-item reveal reveal-delay-1">
+        <div class="pillar-num">IV</div>
+        <div class="pillar-body">
+          <div class="pillar-label">Revenue Engineering</div>
+          <div class="pillar-name">The Ghost Negotiation Matrix — Profit Engineering</div>
+          <div class="pillar-desc">Automated revenue optimization through game theory and asymmetric information leverage. Continuously monitors market intelligence, weakness signals, and mathematical profit margins. Typically securing 10–20% higher contract values through strategic silence, calculated scarcity, and psychological anchoring.</div>
+        </div>
+      </div>
+      <div class="pillar-item reveal reveal-delay-2">
+        <div class="pillar-num">V</div>
+        <div class="pillar-body">
+          <div class="pillar-label">Total Independence</div>
+          <div class="pillar-name">The Sovereign Path — Operational Autonomy</div>
+          <div class="pillar-desc">The ultimate decoupling. Self-healing protocols, redundant failover systems, and encrypted data sovereignty ensure your business operates with the resilience of critical infrastructure — independent of your physical presence, platform stability, or employee loyalty.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEFCON -->
+<section class="section defcon-section">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-eyebrow">Priority Management</div>
+      <h2 class="section-title">The <span class="accent">DEFCON Protocol</span></h2>
+      <p class="section-desc">Military-grade prioritization. Every interaction is categorized by strategic importance. Zero attention consumed by the irrelevant.</p>
+    </div>
+    <div class="defcon-grid reveal">
+      <div class="defcon-card defcon-1">
+        <div class="defcon-level">Defcon Level</div>
+        <div class="defcon-number">1</div>
+        <div class="defcon-name">Black Swan Events</div>
+        <div class="defcon-desc">Major contract terminations, cyber attacks, PR crises. All secondary notifications blocked. Three crisis response scenarios generated. Voice call protocol initiated.</div>
+        <div class="defcon-bar"></div>
+      </div>
+      <div class="defcon-card defcon-2">
+        <div class="defcon-level">Defcon Level</div>
+        <div class="defcon-number">2</div>
+        <div class="defcon-name">Golden Opportunities</div>
+        <div class="defcon-desc">High-value leads, VIP client alerts. Prioritized to top of work queue. Required documentation prepared for sub-60-second response capability.</div>
+        <div class="defcon-bar"></div>
+      </div>
+      <div class="defcon-card defcon-3">
+        <div class="defcon-level">Defcon Level</div>
+        <div class="defcon-number">3</div>
+        <div class="defcon-name">Steady State Operations</div>
+        <div class="defcon-desc">Project management, team discussions. Messages batched and presented during designated Sentinel Hours — predefined, protected work windows.</div>
+        <div class="defcon-bar"></div>
+      </div>
+      <div class="defcon-card defcon-4">
+        <div class="defcon-level">Defcon Level</div>
+        <div class="defcon-number">4</div>
+        <div class="defcon-name">Low-Priority Intake</div>
+        <div class="defcon-desc">Industry newsletters, automated reports, secondary vendor communications. Archived with metadata extraction. Never disturbs human operator.</div>
+        <div class="defcon-bar"></div>
+      </div>
+      <div class="defcon-card defcon-5">
+        <div class="defcon-level">Defcon Level</div>
+        <div class="defcon-number">5</div>
+        <div class="defcon-name">The Void</div>
+        <div class="defcon-desc">Spam, unsolicited noise. System learns from these to refine filters. Completely invisible to user. Zero attention consumed, ever.</div>
+        <div class="defcon-bar"></div>
+      </div>
+      <div class="defcon-card defcon-g">
+        <div class="defcon-level">Special Protocol</div>
+        <div class="defcon-number">Ghost Buffer</div>
+        <div class="defcon-name">Psychological Time Management</div>
+        <div class="defcon-desc">Intelligent delay algorithm prevents expectation traps. Even instant AI responses are time-released to maintain executive presence and strategic positioning.</div>
+        <div class="defcon-bar"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section class="section cases-section">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-eyebrow">Executed Applications</div>
+      <h2 class="section-title">Strategic <span class="accent">Implementation Scenarios</span></h2>
+      <p class="section-desc">Real-world applications demonstrating what happens when emotional intelligence operates at machine speed.</p>
+    </div>
+
+    <div style="margin-top: 48px;">
+      <!-- Case 1 -->
+      <div class="case-card reveal">
+        <div class="case-header" onclick="toggleCase(this)">
+          <div class="case-title-group">
+            <div class="case-idx">01</div>
+            <div class="case-name">The Recovered Negotiation</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+            <div class="case-result-badge">+ €87,000 recovered</div>
+            <div class="case-chevron">▾</div>
+          </div>
+        </div>
+        <div class="case-body open">
+          <div class="case-row">
+            <div>
+              <div class="case-col-label">Context & Trigger</div>
+              <div class="case-text">Client email: <em>"Your proposal is interesting, but our budget is fixed. Let's talk next month."</em> Conventional response would have been: "Understood, I'll follow up." A lost opportunity.</div>
+            </div>
+            <div>
+              <div class="case-col-label">Sentinel Analysis</div>
+              <ul class="case-steps">
+                <li>Keyword "interesting" generated low enthusiasm score</li>
+                <li>"Let's talk next month" flagged as delay tactic — client shopping alternatives</li>
+                <li>DEFCON 2 alert triggered immediately</li>
+                <li>Loss-leader counter-offer generated to maintain engagement</li>
+                <li>Response deployed within 15 minutes</li>
+              </ul>
+            </div>
+          </div>
+          <div class="case-outcome">
+            <div class="case-outcome-label">Verified Outcome</div>
+            <div class="case-outcome-text">Contract signed within 24 hours. €87,000 revenue recovered that conventional automation would have quietly abandoned. Human operator involvement: 8 minutes total.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Case 2 -->
+      <div class="case-card reveal">
+        <div class="case-header" onclick="toggleCase(this)">
+          <div class="case-title-group">
+            <div class="case-idx">02</div>
+            <div class="case-name">The Burnout Prevention Protocol</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+            <div class="case-result-badge">€200K+ decision protected</div>
+            <div class="case-chevron">▾</div>
+          </div>
+        </div>
+        <div class="case-body">
+          <div class="case-row">
+            <div>
+              <div class="case-col-label">Biometric State</div>
+              <div class="case-text">Founder processes 47 emails in 3 hours, operating on 4 hours of sleep. HRV drops 35% below baseline. Decision Fatigue Score exceeds threshold (DFS &gt; 85). Ghost Protocol activates autonomously.</div>
+            </div>
+            <div>
+              <div class="case-col-label">Autonomous Response</div>
+              <ul class="case-steps">
+                <li>Calendar hijacked with "Strategic Alignment" recovery blocks</li>
+                <li>Outbound communications held in smart delay buffer</li>
+                <li>DEFCON 2 notifications downgraded to DEFCON 3</li>
+                <li>Smart home integration activated (focus environment)</li>
+                <li>Full cognitive capacity restored within 18 hours</li>
+              </ul>
+            </div>
+          </div>
+          <div class="case-outcome">
+            <div class="case-outcome-label">Verified Outcome</div>
+            <div class="case-outcome-text">Founder protected from making a €200K+ strategic decision in a compromised cognitive state. No errors recorded. Full performance restored before the decision window.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Case 3 -->
+      <div class="case-card reveal">
+        <div class="case-header" onclick="toggleCase(this)">
+          <div class="case-title-group">
+            <div class="case-idx">03</div>
+            <div class="case-name">The 87% Above Market Negotiation</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+            <div class="case-result-badge">€28,000 vs €15,000 market rate</div>
+            <div class="case-chevron">▾</div>
+          </div>
+        </div>
+        <div class="case-body">
+          <div class="case-row">
+            <div>
+              <div class="case-col-label">Intelligence Gathered</div>
+              <ul class="case-steps">
+                <li>Prospect received Series B funding 3 weeks prior</li>
+                <li>High urgency signals in communication patterns</li>
+                <li>Low competitor mention count (scarcity of alternatives)</li>
+                <li>Quarter-end deadline approaching</li>
+                <li>Leverage score: Lv = 3.2 (threshold: 2.5)</li>
+              </ul>
+            </div>
+            <div>
+              <div class="case-col-label">Sentinel Execution</div>
+              <ul class="case-steps">
+                <li>Three-tier pricing deployed (Sacrifice/Target/Skeleton)</li>
+                <li>Anchored at €45,000 Sacrifice offer</li>
+                <li>€28,000 positioned as "pragmatic choice"</li>
+                <li>72-hour strategic silence protocol executed</li>
+                <li>Day 4: scarcity injection deployed</li>
+              </ul>
+            </div>
+          </div>
+          <div class="case-outcome">
+            <div class="case-outcome-label">Verified Outcome</div>
+            <div class="case-outcome-text">Client selected €28,000 Target offer — 87% above market rate. Total negotiation: 6 days. Human operator involvement: 12 minutes. Zero compromise on project scope.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU GET -->
+<section class="section get-section">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-eyebrow">Protocol Contents</div>
+      <h2 class="section-title">The Complete<br><span class="accent">Architectural Blueprint</span></h2>
+      <p class="section-desc">For €1,000, you acquire complete intellectual property that required 10,000+ hours of development, controlled failure analysis, and strategic refinement.</p>
+    </div>
+    <div class="get-grid reveal">
+      <div class="get-item" data-n="1">
+        <div class="get-icon">📖</div>
+        <div class="get-title">200+ Page Architectural Methodology</div>
+        <div class="get-desc">Comprehensive documentation of all five core systems at implementation depth. Not theory — engineering-grade specification.</div>
+      </div>
+      <div class="get-item" data-n="2">
+        <div class="get-icon">🧮</div>
+        <div class="get-title">Proprietary Algorithms & Scoring Matrices</div>
+        <div class="get-desc">The mathematical formulas powering decision prioritization, leverage calculation, sentiment scoring, and biometric integration.</div>
+      </div>
+      <div class="get-item" data-n="3">
+        <div class="get-icon">🎭</div>
+        <div class="get-title">The God Prompt Library</div>
+        <div class="get-desc">1,000+ line system instructions for each architectural component. How AI systems achieve consciousness-level sophistication in business contexts.</div>
+      </div>
+      <div class="get-item" data-n="4">
+        <div class="get-icon">🔧</div>
+        <div class="get-title">Technical Integration Frameworks</div>
+        <div class="get-desc">Conceptual guides for connecting email, CRM, biometric devices, calendar, and financial tools into unified operational intelligence.</div>
+      </div>
+      <div class="get-item" data-n="5">
+        <div class="get-icon">📊</div>
+        <div class="get-title">Implementation Roadmaps & Decision Trees</div>
+        <div class="get-desc">Step-by-step deployment sequences, prioritization frameworks, and troubleshooting protocols. How to migrate from conventional operations to Sentinel sovereignty.</div>
+      </div>
+      <div class="get-item" data-n="6">
+        <div class="get-icon">🛡️</div>
+        <div class="get-title">Security & Privacy Architectures</div>
+        <div class="get-desc">Three-layer anonymization, zero-knowledge storage, encrypted communication tunnels. Total informational control maintained at all times.</div>
+      </div>
+      <div class="get-item" data-n="7">
+        <div class="get-icon">💡</div>
+        <div class="get-title">Case Studies & Strategic Scenarios</div>
+        <div class="get-desc">Real-world applications with verified outcomes. Each architecture demonstrated under live business conditions with real financial consequences.</div>
+      </div>
+      <div class="get-item" data-n="8">
+        <div class="get-icon">⚖️</div>
+        <div class="get-title">Ethical Guidelines & Legal Frameworks</div>
+        <div class="get-desc">How to deploy advanced automation without crossing manipulation boundaries. Operating at the edge of advantage while maintaining integrity.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO IS THIS FOR -->
+<section class="section ideal-section">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-eyebrow">Ideal Candidate Profile</div>
+      <h2 class="section-title">Architected for the<br><span class="accent">Sovereign Operator</span></h2>
+      <p class="section-desc">This protocol is not designed for everyone. It is for operators who understand that the greatest competitive advantage is a fundamentally different paradigm.</p>
+    </div>
+    <div class="ideal-grid reveal">
+      <div class="ideal-item">
+        <div class="ideal-item-icon">🎯</div>
+        <div class="ideal-item-title">Elite Consultants & Advisors</div>
+        <div class="ideal-item-desc">High-ticket service providers where relationship quality and response sophistication directly determine contract values. Typical engagement: €50K–€500K+</div>
+      </div>
+      <div class="ideal-item">
+        <div class="ideal-item-icon">🚀</div>
+        <div class="ideal-item-title">Venture-Backed Founders</div>
+        <div class="ideal-item-desc">Operators managing rapid scaling where decision quality under pressure determines success or failure. Series A+ stage where executive bandwidth is the primary growth constraint.</div>
+      </div>
+      <div class="ideal-item">
+        <div class="ideal-item-icon">🏛️</div>
+        <div class="ideal-item-title">Professional Service Firms</div>
+        <div class="ideal-item-desc">Legal, financial, strategic advisory practices where partner time costs €500–€2,000/hour and client relationships span years of institutional trust.</div>
+      </div>
+      <div class="ideal-item">
+        <div class="ideal-item-icon">📈</div>
+        <div class="ideal-item-title">Investment Managers</div>
+        <div class="ideal-item-desc">Individuals managing capital deployment where information asymmetry and decision timing create or destroy millions in value within narrow windows.</div>
+      </div>
+      <div class="ideal-item">
+        <div class="ideal-item-icon">🎨</div>
+        <div class="ideal-item-title">Creative Agency Founders</div>
+        <div class="ideal-item-desc">Design, branding, content operations where the founder's creative capacity is the product itself. Protection from administrative drain is existential.</div>
+      </div>
+      <div class="ideal-item">
+        <div class="ideal-item-icon">🧠</div>
+        <div class="ideal-item-title">Cognitive Sovereignty Seekers</div>
+        <div class="ideal-item-desc">Operators who have experienced decision fatigue's impact firsthand and understand that mental clarity is a strategic asset — not a productivity preference.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="section philosophy-section">
+  <div class="container">
+    <div class="philosophy-inner reveal">
+      <div class="section-eyebrow" style="justify-content:center;margin-bottom:40px;">Foundational Philosophy</div>
+      <div class="philosophy-quote">
+        "If your systems cannot perceive, process, and respond to emotion, then you are a slave to your own technology."
+      </div>
+      <div class="philosophy-attr">
+        <span class="philosophy-divider"></span>
+        Stefano D'angello, Protocol Architect
+        <span class="philosophy-divider"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section pricing-section" id="pricing">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:0;">
+      <div class="section-eyebrow" style="justify-content:center;">Investment Structure</div>
+      <h2 class="section-title">Acquire <span class="accent">Digital Sovereignty</span></h2>
+      <p class="section-desc" style="margin:0 auto;">One-time acquisition. Lifetime access. No platform dependence.</p>
+    </div>
+    <div class="pricing-wrap reveal">
+      <div class="pricing-inner">
+        <div class="pricing-left">
+          <div class="pricing-badge-sm">Elite Edition</div>
+          <div class="pricing-amount"><span class="pricing-currency">€</span>1,000</div>
+          <div class="pricing-period">Complete Protocol Blueprint — One-Time</div>
+          <a href="https://ciprianstefanplesca.gumroad.com/l/thesentinelprotocol" target="_blank" class="pricing-cta">
+            ⬡ Acquire the Protocol
+          </a>
+          <a href="https://cal.com/ciprian-stefan-plesca" target="_blank" class="pricing-cal">
+            ◎ Book an Architecture Discovery Call
+          </a>
+          <div class="pricing-secure">⚿ Secure via Gumroad · Instant Delivery · Lifetime Access</div>
+
+          <div class="pricing-roi" style="margin-top:28px;">
+            <div class="roi-label">Conservative ROI Projection</div>
+            <div class="roi-text">
+              €375K time recovery + €75K revenue optimization + €90K operational efficiency<br>
+              = <strong>€540K annual value</strong><br>
+              vs. <strong>€1,000 investment</strong><br>
+              = <strong>Payback in 11 days</strong>
+            </div>
+          </div>
+        </div>
+        <div class="pricing-right">
+          <div class="pricing-features-title">What Is Included</div>
+          <ul class="pricing-feat-list">
+            <li><span class="feat-check">✦</span>Complete 200+ page architectural documentation</li>
+            <li><span class="feat-check">✦</span>All five core system methodologies</li>
+            <li><span class="feat-check">✦</span>Proprietary algorithms & scoring matrices</li>
+            <li><span class="feat-check">✦</span>God Prompt Library (1,000+ lines)</li>
+            <li><span class="feat-check">✦</span>Technical integration frameworks</li>
+            <li><span class="feat-check">✦</span>DEFCON prioritization system</li>
+            <li><span class="feat-check">✦</span>Implementation roadmaps & decision trees</li>
+            <li><span class="feat-check">✦</span>Three-layer security architectures</li>
+            <li><span class="feat-check">✦</span>Case studies & strategic scenarios</li>
+            <li><span class="feat-check">✦</span>Ethical guidelines & legal frameworks</li>
+            <li><span class="feat-check">✦</span>Lifetime access — all future updates</li>
+            <li><span class="feat-check">✦</span>No subscriptions. No platform lock-in.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section-sm contact-section">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-eyebrow">Direct Access</div>
+      <h2 class="section-title" style="font-size:clamp(28px,4vw,42px);margin-bottom:40px;">Contact the <span class="accent">Architect</span></h2>
+    </div>
+    <div class="contact-grid reveal">
+      <div>
+        <div class="contact-card" style="margin-bottom:20px;">
+          <div class="contact-card-header">
+            <div class="contact-card-icon">✉</div>
+            <div class="contact-card-label">Direct Email</div>
+          </div>
+          <div class="contact-card-body">
+            <a href="mailto:contact@localpulse.pro" class="contact-link">contact@localpulse.pro</a>
+            <div class="contact-desc">For technical questions, enterprise inquiries, and implementation discussions.</div>
+          </div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-card-header">
+            <div class="contact-card-icon">◎</div>
+            <div class="contact-card-label">Book a Discovery Call</div>
+          </div>
+          <div class="contact-card-body">
+            <a href="https://cal.com/ciprian-stefan-plesca" target="_blank" class="contact-link">cal.com/ciprian-stefan-plesca</a>
+            <div class="contact-desc">30-minute architecture discovery call. Discuss whether Sentinel is the right system for your operational context.</div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;justify-content:center;gap:24px;">
+        <div>
+          <div class="section-eyebrow" style="margin-bottom:16px;">About the Architect</div>
+          <p style="font-size:15px;color:var(--text-2);line-height:1.8;margin-bottom:16px;">
+            Ciprian Ștefan Pleșca operates at the intersection of advanced AI systems, high-stakes business operations, and cognitive psychology. The Sentinel Protocol is the synthesis of years architecting automation systems for elite consultancies, venture-backed startups, and high-net-worth individuals.
+          </p>
+          <p style="font-family:var(--font-m);font-size:11px;color:var(--text-3);letter-spacing:0.1em;text-transform:uppercase;">
+            Strategic brand: Stefano D'angello · Platform: LocalPulse.pro
+          </p>
+        </div>
+        <div style="border:1px solid var(--border);padding:24px;">
+          <div class="section-eyebrow" style="margin-bottom:12px;">Implementation Services</div>
+          <p style="font-size:14px;color:var(--text-2);line-height:1.7;margin-bottom:16px;">Full implementation — transforming the blueprint into operational systems — available at <strong style="color:var(--text);">€10,000–€15,000</strong>. Includes custom neural configuration, digital bunker construction, biometric integration, and adversarial testing.</p>
+          <a href="https://cal.com/ciprian-stefan-plesca" target="_blank" class="pricing-cal" style="display:block;text-align:center;">Request Implementation Consultation</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">⬡ THE SENTINEL PROTOCOL</div>
+      <div class="footer-tagline">The World's First Business Operating System based on Neural Emotional Intelligence. Architected for elite entrepreneurs who refuse to be slaves to their own success.</div>
+      <a href="mailto:contact@localpulse.pro" class="footer-email">contact@localpulse.pro</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-label">Architecture</div>
+      <ul class="footer-links">
+        <li><a href="#pillars">The Sentinel Cortex</a></li>
+        <li><a href="#pillars">The Neural Persona</a></li>
+        <li><a href="#pillars">The Energy Shield</a></li>
+        <li><a href="#pillars">Ghost Negotiation Matrix</a></li>
+        <li><a href="#pillars">The Sovereign Path</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-label">Access</div>
+      <ul class="footer-links">
+        <li><a href="https://ciprianstefanplesca.gumroad.com/l/thesentinelprotocol" target="_blank">Acquire the Protocol</a></li>
+        <li><a href="https://cal.com/ciprian-stefan-plesca" target="_blank">Book a Discovery Call</a></li>
+        <li><a href="mailto:contact@localpulse.pro">Email the Architect</a></li>
+        <li><a href="#pricing">View Investment Structure</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 Ciprian Ștefan Pleșca · All Rights Reserved</div>
+    <div class="footer-legal">
+      LocalPulse.pro™ — Proprietary Intellectual Property<br>
+      All concepts, methodologies & architectures are protected. Unauthorized reproduction strictly prohibited.
+    </div>
+  </div>
+</footer>
+
+<script>
+// Scroll Reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Case Study Toggle
+function toggleCase(header) {
+  const body = header.nextElementSibling;
+  const chevron = header.querySelector('.case-chevron');
+  const isOpen = body.classList.contains('open');
+
+  document.querySelectorAll('.case-body').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.case-chevron').forEach(c => c.classList.remove('open'));
+
+  if (!isOpen) {
+    body.classList.add('open');
+    chevron.classList.add('open');
+  }
+}
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+// Parallax subtle for hero orb
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  const orb = document.querySelector('.hero-orb');
+  if (orb) orb.style.transform = `translateY(${scrollY * 0.15}px)`;
+});
+</script>
+</body>
+</html>

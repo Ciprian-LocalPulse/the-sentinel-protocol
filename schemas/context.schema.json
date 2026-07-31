@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/Ciprian-LocalPulse/the-sentinel-protocol/schemas/context.schema.json",
+  "title": "ConversationContext",
+  "description": "Historical/contextual data injected into drafting (docs/persona/mirror.md#historical-context-injection). All fields must be sourced from the founder's own records, per design-principles.md #3.",
+  "type": "object",
+  "required": ["thread_id", "interaction_history"],
+  "properties": {
+    "thread_id": { "type": "string" },
+    "interaction_history": {
+      "type": "object",
+      "properties": {
+        "last_meeting": { "type": "string", "description": "e.g. location and date, sourced from calendar/CRM." },
+        "personal_detail": {
+          "type": "string",
+          "description": "Optional, founder-recorded relationship detail. Never inferred covertly."
+        },
+        "unresolved_issue": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "negotiation_context": {
+      "type": "object",
+      "description": "See docs/negotiation/algorithms.md",
+      "properties": {
+        "urgency": { "type": "number", "minimum": 0, "maximum": 10 },
+        "uniqueness": { "type": "number", "minimum": 0, "maximum": 10 },
+        "substitute_count": { "type": "integer", "minimum": 0 },
+        "time_buffer_days": { "type": "integer", "minimum": 0 },
+        "real_deadline": {
+          "type": ["string", "null"],
+          "format": "date",
+          "description": "Must be a real, sourced deadline or null. Never fabricated — see docs/negotiation/pricing.md#honest-scarcity-signaling."
+        }
+      },
+      "additionalProperties": false
+    },
+    "capacity_check": {
+      "type": "object",
+      "description": "See docs/energy/biometrics.md",
+      "properties": {
+        "capacity_score": { "type": "number", "minimum": 0, "maximum": 1 },
+        "checked_at": { "type": "string", "format": "date-time" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

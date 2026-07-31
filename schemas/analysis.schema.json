@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/Ciprian-LocalPulse/the-sentinel-protocol/schemas/analysis.schema.json",
+  "title": "ScoredMessage",
+  "description": "Output of the Cortex scoring pipeline (docs/cortex/scoring.md). Every scored message must include explainable factors, per design-principles.md #1.",
+  "type": "object",
+  "required": ["fingerprint", "priority_score", "tier", "factors", "explanation", "scored_at"],
+  "properties": {
+    "fingerprint": {
+      "type": "string",
+      "description": "SHA-256 hash from the Ingestion stage (docs/cortex/ingestion.md).",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "priority_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 10,
+      "description": "Weighted score per docs/cortex/scoring.md formula."
+    },
+    "tier": {
+      "type": "string",
+      "enum": ["P1", "P2", "P3", "P4", "P5"],
+      "description": "Priority tier, see docs/cortex/scoring.md#priority-tiers."
+    },
+    "factors": {
+      "type": "object",
+      "required": ["FC", "EV", "TD", "SA"],
+      "properties": {
+        "FC": { "type": "number", "minimum": 0, "maximum": 10, "description": "Financial Clout" },
+        "EV": { "type": "number", "minimum": 0, "maximum": 10, "description": "Emotional Volatility (magnitude, not sender's private psychology)" },
+        "TD": { "type": "number", "minimum": 0, "maximum": 10, "description": "Time Decay" },
+        "SA": { "type": "number", "minimum": 0, "maximum": 10, "description": "Strategic Alignment" }
+      },
+      "additionalProperties": false
+    },
+    "explanation": {
+      "type": "string",
+      "description": "Plain-language justification for the score, mandatory per design-principles.md #1."
+    },
+    "sender_domain": { "type": "string" },
+    "channel": { "type": "string", "enum": ["email", "slack", "calendar", "webhook", "other"] },
+    "scored_at": { "type": "string", "format": "date-time" },
+    "model_version": {
+      "type": "string",
+      "description": "Version identifier of the scoring model/weights used, per design-principles.md #6."
+    }
+  },
+  "additionalProperties": false
+}

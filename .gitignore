@@ -1,0 +1,19 @@
+# Environments
+.venv/
+venv/
+__pycache__/
+*.pyc
+.env
+
+# Sentinel local data — must never be committed
+.sentinel/
+*.key
+
+# Test/coverage artifacts
+.pytest_cache/
+.coverage
+htmlcov/
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/sentinel-shield.png" alt="The Sentinel Protocol" width="600">
+</p>
+
 # The Sentinel Protocol
 
 **A reference architecture for emotionally-aware business automation.**

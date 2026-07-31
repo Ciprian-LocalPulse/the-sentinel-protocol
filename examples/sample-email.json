@@ -1,0 +1,8 @@
+{
+  "raw_data": "<p>Hi there, this is urgent - we need to finalize the contract by Friday. Really excited about this!</p><div>Disclaimer: This email and any attachments are confidential...</div>",
+  "headers": {
+    "From": "client@acme-corp.example.com",
+    "X-Priority": "1 (Highest)",
+    "Authentication-Results": "spf=pass dkim=pass"
+  }
+}

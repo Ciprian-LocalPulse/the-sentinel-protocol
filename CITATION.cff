@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this architecture or reference implementation, please cite it as below."
+title: "The Sentinel Protocol: A Reference Architecture for Emotionally-Aware Business Automation"
+authors:
+  - family-names: "Pleșca"
+    given-names: "Ciprian Ștefan"
+    alias: "Stefano D'angelo"
+repository-code: "https://github.com/Ciprian-LocalPulse/the-sentinel-protocol"
+license: MIT
+date-released: 2026-07-31
+version: 0.1.0

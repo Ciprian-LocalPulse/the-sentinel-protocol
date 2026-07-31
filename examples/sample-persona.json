@@ -1,0 +1,23 @@
+{
+  "profile_id": "founder-primary-v1",
+  "owner_consent": true,
+  "avg_sentence_length": 11.4,
+  "punctuation_profile": {
+    "!": 2,
+    "?": 5,
+    "—": 8,
+    "...": 1
+  },
+  "pos_distribution": {
+    "long_words_ratio": 0.18
+  },
+  "top_keywords": [
+    ["deliverable", 14],
+    ["architecture", 11],
+    ["scaling", 9],
+    ["impact", 8],
+    ["timeline", 7]
+  ],
+  "corpus_category": "golden_sentences",
+  "built_at": "2026-07-01T09:00:00Z"
+}

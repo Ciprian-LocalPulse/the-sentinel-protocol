@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/Ciprian-LocalPulse/the-sentinel-protocol/schemas/persona.schema.json",
+  "title": "StyleProfile",
+  "description": "Output of docs/persona/stylometry.md. Built exclusively from the founder's own, opt-in authored corpus.",
+  "type": "object",
+  "required": ["profile_id", "owner_consent", "avg_sentence_length", "pos_distribution", "top_keywords", "built_at"],
+  "properties": {
+    "profile_id": { "type": "string" },
+    "owner_consent": {
+      "type": "boolean",
+      "const": true,
+      "description": "Must always be true. A StyleProfile cannot exist without explicit opt-in, per docs/persona/stylometry.md#consent-and-data-handling."
+    },
+    "avg_sentence_length": { "type": "number", "minimum": 0 },
+    "punctuation_profile": {
+      "type": "object",
+      "additionalProperties": { "type": "number" }
+    },
+    "pos_distribution": {
+      "type": "object",
+      "additionalProperties": { "type": "number" }
+    },
+    "top_keywords": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "items": [{ "type": "string" }, { "type": "integer" }],
+        "minItems": 2,
+        "maxItems": 2
+      }
+    },
+    "corpus_category": {
+      "type": "string",
+      "enum": ["golden_sentences", "conflict_messages", "casual_layer"],
+      "description": "See docs/persona/stylometry.md#training-corpus-guidance"
+    },
+    "built_at": { "type": "string", "format": "date-time" }
+  },
+  "additionalProperties": false
+}

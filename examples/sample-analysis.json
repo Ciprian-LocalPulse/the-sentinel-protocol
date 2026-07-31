@@ -1,0 +1,16 @@
+{
+  "fingerprint": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b85",
+  "priority_score": 6.2,
+  "tier": "P3",
+  "factors": {
+    "FC": 8.0,
+    "EV": 6.0,
+    "TD": 3.0,
+    "SA": 5.0
+  },
+  "explanation": "Financial clout 8.0/10, emotional volatility 6.0/10, time decay 3.0/10, strategic alignment 5.0/10 -> priority score 6.20 (P3).",
+  "sender_domain": "acme-corp.example.com",
+  "channel": "email",
+  "scored_at": "2026-07-31T10:15:00Z",
+  "model_version": "scoring-weights-v1.0"
+}

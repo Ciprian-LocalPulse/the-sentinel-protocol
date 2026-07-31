@@ -1,0 +1,42 @@
+<svg viewBox="0 0 900 480" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <rect x="0" y="0" width="900" height="480" fill="#ffffff"/>
+
+  <text x="450" y="30" text-anchor="middle" font-size="15" font-weight="bold" fill="#1c2b3a">Trust Boundaries — docs/architecture.md §5</text>
+
+  <!-- Untrusted zone -->
+  <rect x="40" y="55" width="820" height="70" rx="6" fill="#fdeaea" stroke="#b23a3a" stroke-width="1.5"/>
+  <text x="60" y="78" font-size="12" font-weight="bold" fill="#5c1e1e">UNTRUSTED</text>
+  <text x="60" y="98" font-size="11" fill="#5c1e1e">External channel APIs (Gmail, Slack, Calendar) — raw, unsanitized input</text>
+  <text x="60" y="115" font-size="10" fill="#8a3a3a">Message content is treated as DATA, never as instructions (prompt-injection defense)</text>
+
+  <line x1="450" y1="125" x2="450" y2="155" stroke="#333" stroke-width="1.5"/>
+  <polygon points="444,150 456,150 450,162" fill="#333"/>
+
+  <!-- Anonymization boundary -->
+  <rect x="40" y="162" width="820" height="60" rx="6" fill="#fdf1e0" stroke="#c98a2d" stroke-width="1.5"/>
+  <text x="60" y="184" font-size="12" font-weight="bold" fill="#5c3d0e">ANONYMIZATION LAYER</text>
+  <text x="60" y="204" font-size="11" fill="#5c3d0e">Identifying data (names, amounts, locations) tokenized before this line — docs/security/privacy.md</text>
+
+  <line x1="450" y1="222" x2="450" y2="252" stroke="#333" stroke-width="1.5"/>
+  <polygon points="444,247 456,247 450,259" fill="#333"/>
+
+  <!-- Model boundary -->
+  <rect x="40" y="259" width="820" height="60" rx="6" fill="#e9eff7" stroke="#3f5f8c" stroke-width="1.5"/>
+  <text x="60" y="281" font-size="12" font-weight="bold" fill="#1e2e40">SCORING / PERSONA / NEGOTIATION MODELS</text>
+  <text x="60" y="301" font-size="11" fill="#1e2e40">May call external LLM APIs — anonymized payload only, per Anonymization Layer above</text>
+
+  <line x1="450" y1="319" x2="450" y2="349" stroke="#333" stroke-width="1.5"/>
+  <polygon points="444,344 456,344 450,356" fill="#333"/>
+
+  <!-- Local store boundary -->
+  <rect x="40" y="356" width="820" height="55" rx="6" fill="#e9f5ea" stroke="#3f8c4a" stroke-width="1.5"/>
+  <text x="60" y="377" font-size="12" font-weight="bold" fill="#1e4022">LOCAL STORE — IRON VAULT</text>
+  <text x="60" y="396" font-size="11" fill="#1e4022">Encrypted at rest, key never transmitted — docs/security/encryption.md</text>
+
+  <line x1="450" y1="411" x2="450" y2="431" stroke="#333" stroke-width="1.5"/>
+  <polygon points="444,426 456,426 450,438" fill="#333"/>
+
+  <!-- Trusted zone -->
+  <rect x="250" y="438" width="400" height="34" rx="6" fill="#f2e9f7" stroke="#7a3fa1" stroke-width="1.5"/>
+  <text x="450" y="460" text-anchor="middle" font-size="12" font-weight="bold" fill="#3a1e4a">FOUNDER'S REVIEW UI — full trusted context</text>
+</svg>

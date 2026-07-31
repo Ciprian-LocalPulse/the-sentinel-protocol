@@ -2,6 +2,13 @@
   <img src="assets/sentinel-shield.png" alt="The Sentinel Protocol" width="600">
 </p>
 
+<p align="center">
+  <img src="https://img.shields.io/badge/tests-46%20passing-brightgreen" alt="tests passing">
+  <img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT license">
+  <img src="https://img.shields.io/badge/python-3.11%2B-blue" alt="Python 3.11+">
+  <img src="https://img.shields.io/badge/API-FastAPI-009688" alt="FastAPI">
+</p>
+
 # The Sentinel Protocol
 
 **A reference architecture for emotionally-aware business automation.**
@@ -65,16 +72,22 @@ Full component and data-flow detail: [`docs/architecture.md`](docs/architecture.
 
 ## Status
 
-This is architecture-first work: documentation and schemas are the
-priority, a working prototype follows once the specification is stable.
-See [`ROADMAP.md`](ROADMAP.md) for what's built vs. planned.
+Architecture, all five pillars, reference prototype, and a runnable API
+service are complete and tested. See [`ROADMAP.md`](ROADMAP.md) for what
+remains (channel connectors, the `/v1/send` endpoint, hosted deployment).
 
 | Layer | Status |
 |---|---|
-| Architecture & design docs | In progress |
-| JSON schemas (`schemas/`) | Planned |
-| Reference prototype (`prototype/`) | Planned |
-| Prompt specifications (`prompts/`) | Planned |
+| Architecture & design docs | Complete |
+| JSON schemas (`schemas/`) | Complete |
+| Reference prototype (`prototype/`) | Complete, 46 tests passing |
+| API service (`prototype/python/api/`) | Complete (drafting is mask-selection only — see `docs/api/endpoints.md`) |
+| Channel connectors (Gmail/Slack/Calendar) | Documented pattern, implementation pending |
+
+## For Developers
+
+Start at [`docs/developers/getting-started.md`](docs/developers/getting-started.md).
+Architecture decisions and their rationale: [`docs/developers/adr/`](docs/developers/adr/).
 
 ## Repository Map
 

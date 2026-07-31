@@ -1,0 +1,70 @@
+<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="pa" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#333"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="900" height="400" fill="#ffffff"/>
+  <text x="450" y="28" text-anchor="middle" font-size="15" font-weight="bold" fill="#1c2b3a">Ingestion → Scoring Pipeline (docs/cortex/)</text>
+
+  <g font-size="10">
+    <rect x="20" y="60" width="140" height="60" rx="6" fill="#f4f4f4" stroke="#888"/>
+    <text x="90" y="85" text-anchor="middle" font-weight="bold">Raw payload</text>
+    <text x="90" y="102" text-anchor="middle">email/slack/webhook</text>
+
+    <line x1="160" y1="90" x2="195" y2="90" stroke="#333" marker-end="url(#pa)"/>
+
+    <rect x="195" y="60" width="150" height="60" rx="6" fill="#fdf1e0" stroke="#c98a2d"/>
+    <text x="270" y="82" text-anchor="middle" font-weight="bold">sanitize()</text>
+    <text x="270" y="98" text-anchor="middle">strip HTML + boilerplate</text>
+    <text x="270" y="112" text-anchor="middle" font-size="9" fill="#8a6a3a">ingestion.py</text>
+
+    <line x1="345" y1="90" x2="380" y2="90" stroke="#333" marker-end="url(#pa)"/>
+
+    <rect x="380" y="60" width="150" height="60" rx="6" fill="#fdf1e0" stroke="#c98a2d"/>
+    <text x="455" y="82" text-anchor="middle" font-weight="bold">fingerprint()</text>
+    <text x="455" y="98" text-anchor="middle">SHA-256 dedup key</text>
+    <text x="455" y="112" text-anchor="middle" font-size="9" fill="#8a6a3a">ingestion.py</text>
+
+    <line x1="530" y1="90" x2="565" y2="90" stroke="#333" marker-end="url(#pa)"/>
+
+    <rect x="565" y="60" width="160" height="60" rx="6" fill="#fdf1e0" stroke="#c98a2d"/>
+    <text x="645" y="82" text-anchor="middle" font-weight="bold">extract_metadata()</text>
+    <text x="645" y="98" text-anchor="middle">sender, auth, channel</text>
+    <text x="645" y="112" text-anchor="middle" font-size="9" fill="#8a6a3a">ingestion.py</text>
+
+    <line x1="645" y1="120" x2="645" y2="155" stroke="#333" marker-end="url(#pa)"/>
+  </g>
+
+  <rect x="270" y="155" width="360" height="40" rx="6" fill="#e8eef7" stroke="#4a6fa5"/>
+  <text x="450" y="180" text-anchor="middle" font-size="12" font-weight="bold" fill="#1c2b3a">IngestedMessage</text>
+
+  <line x1="450" y1="195" x2="450" y2="225" stroke="#333" marker-end="url(#pa)"/>
+
+  <g font-size="10">
+    <rect x="60" y="225" width="150" height="55" rx="6" fill="#e9f5ea" stroke="#3f8c4a"/>
+    <text x="135" y="248" text-anchor="middle" font-weight="bold">FC</text>
+    <text x="135" y="264" text-anchor="middle">financial clout</text>
+
+    <rect x="240" y="225" width="150" height="55" rx="6" fill="#e9f5ea" stroke="#3f8c4a"/>
+    <text x="315" y="248" text-anchor="middle" font-weight="bold">EV</text>
+    <text x="315" y="264" text-anchor="middle">sentiment magnitude</text>
+
+    <rect x="420" y="225" width="150" height="55" rx="6" fill="#e9f5ea" stroke="#3f8c4a"/>
+    <text x="495" y="248" text-anchor="middle" font-weight="bold">TD</text>
+    <text x="495" y="264" text-anchor="middle">time decay</text>
+
+    <rect x="600" y="225" width="150" height="55" rx="6" fill="#e9f5ea" stroke="#3f8c4a"/>
+    <text x="675" y="248" text-anchor="middle" font-weight="bold">SA</text>
+    <text x="675" y="264" text-anchor="middle">strategic alignment</text>
+  </g>
+
+  <line x1="135" y1="280" x2="440" y2="320" stroke="#333" stroke-width="1"/>
+  <line x1="315" y1="280" x2="440" y2="320" stroke="#333" stroke-width="1"/>
+  <line x1="495" y1="280" x2="460" y2="320" stroke="#333" stroke-width="1"/>
+  <line x1="675" y1="280" x2="460" y2="320" stroke="#333" stroke-width="1" marker-end="url(#pa)"/>
+
+  <rect x="270" y="320" width="360" height="55" rx="6" fill="#fdeaea" stroke="#b23a3a"/>
+  <text x="450" y="343" text-anchor="middle" font-size="12" font-weight="bold" fill="#5c1e1e">ScoredMessage</text>
+  <text x="450" y="360" text-anchor="middle" font-size="10" fill="#7a2e2e">priority_score, tier, factors, explanation — schemas/analysis.schema.json</text>
+</svg>

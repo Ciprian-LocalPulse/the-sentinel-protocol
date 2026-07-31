@@ -1,0 +1,76 @@
+<svg viewBox="0 0 900 460" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <rect x="0" y="0" width="900" height="460" fill="#ffffff"/>
+  <text x="450" y="28" text-anchor="middle" font-size="15" font-weight="bold" fill="#1c2b3a">Deployment Stages (docs/deployment/)</text>
+
+  <!-- Stage 1: local -->
+  <rect x="30" y="55" width="250" height="360" rx="8" fill="#f4f4f4" stroke="#888"/>
+  <text x="155" y="80" text-anchor="middle" font-size="12" font-weight="bold">STAGE 1 — Local</text>
+  <text x="155" y="96" text-anchor="middle" font-size="9" fill="#666">docs/deployment/local.md</text>
+
+  <rect x="50" y="115" width="210" height="45" rx="5" fill="#e8eef7" stroke="#4a6fa5"/>
+  <text x="155" y="135" text-anchor="middle" font-size="10">Single Python process</text>
+  <text x="155" y="150" text-anchor="middle" font-size="9" fill="#555">prototype/python/</text>
+
+  <rect x="50" y="170" width="210" height="45" rx="5" fill="#fdf1e0" stroke="#c98a2d"/>
+  <text x="155" y="190" text-anchor="middle" font-size="10">FastAPI dev server</text>
+  <text x="155" y="205" text-anchor="middle" font-size="9" fill="#5c3d0e">uvicorn --reload</text>
+
+  <rect x="50" y="225" width="210" height="45" rx="5" fill="#e9f5ea" stroke="#3f8c4a"/>
+  <text x="155" y="245" text-anchor="middle" font-size="10">Iron Vault</text>
+  <text x="155" y="260" text-anchor="middle" font-size="9" fill="#2e5c33">~/.sentinel/ (local disk)</text>
+
+  <text x="155" y="300" text-anchor="middle" font-size="9" fill="#888">Recommended starting point —</text>
+  <text x="155" y="314" text-anchor="middle" font-size="9" fill="#888">design-principles.md #7</text>
+
+  <!-- arrow -->
+  <line x1="280" y1="230" x2="325" y2="230" stroke="#333" stroke-width="1.5"/>
+  <polygon points="320,225 320,235 332,230" fill="#333"/>
+  <text x="303" y="220" text-anchor="middle" font-size="9" fill="#555">grows into</text>
+
+  <!-- Stage 2: docker -->
+  <rect x="330" y="55" width="250" height="360" rx="8" fill="#f4f4f4" stroke="#888"/>
+  <text x="455" y="80" text-anchor="middle" font-size="12" font-weight="bold">STAGE 2 — Docker</text>
+  <text x="455" y="96" text-anchor="middle" font-size="9" fill="#666">docs/deployment/docker.md (Planned)</text>
+
+  <rect x="350" y="115" width="210" height="45" rx="5" fill="#e8eef7" stroke="#4a6fa5"/>
+  <text x="455" y="135" text-anchor="middle" font-size="10">Containerized API service</text>
+  <text x="455" y="150" text-anchor="middle" font-size="9" fill="#555">python:3.11-slim image</text>
+
+  <rect x="350" y="170" width="210" height="45" rx="5" fill="#fdf1e0" stroke="#c98a2d"/>
+  <text x="455" y="190" text-anchor="middle" font-size="10">Mounted volume</text>
+  <text x="455" y="205" text-anchor="middle" font-size="9" fill="#5c3d0e">Iron Vault data, never baked in</text>
+
+  <rect x="350" y="225" width="210" height="45" rx="5" fill="#e9f5ea" stroke="#3f8c4a"/>
+  <text x="455" y="245" text-anchor="middle" font-size="10">Runtime secret injection</text>
+  <text x="455" y="260" text-anchor="middle" font-size="9" fill="#2e5c33">env var / mounted secret</text>
+
+  <text x="455" y="300" text-anchor="middle" font-size="9" fill="#888">For always-on infrastructure</text>
+  <text x="455" y="314" text-anchor="middle" font-size="9" fill="#888">not required for single-founder use</text>
+
+  <!-- arrow -->
+  <line x1="580" y1="230" x2="625" y2="230" stroke="#333" stroke-width="1.5"/>
+  <polygon points="620,225 620,235 632,230" fill="#333"/>
+  <text x="603" y="220" text-anchor="middle" font-size="9" fill="#555">scales into</text>
+
+  <!-- Stage 3: cloud -->
+  <rect x="630" y="55" width="250" height="360" rx="8" fill="#f4f4f4" stroke="#888"/>
+  <text x="755" y="80" text-anchor="middle" font-size="12" font-weight="bold">STAGE 3 — Cloud/Team</text>
+  <text x="755" y="96" text-anchor="middle" font-size="9" fill="#666">docs/deployment/cloud.md (Future)</text>
+
+  <rect x="650" y="115" width="210" height="45" rx="5" fill="#e8eef7" stroke="#4a6fa5"/>
+  <text x="755" y="135" text-anchor="middle" font-size="10">Managed container hosting</text>
+  <text x="755" y="150" text-anchor="middle" font-size="9" fill="#555">multi-instance API service</text>
+
+  <rect x="650" y="170" width="210" height="45" rx="5" fill="#fdf1e0" stroke="#c98a2d"/>
+  <text x="755" y="190" text-anchor="middle" font-size="10">Per-user Iron Vault</text>
+  <text x="755" y="205" text-anchor="middle" font-size="9" fill="#5c3d0e">no shared encryption key</text>
+
+  <rect x="650" y="225" width="210" height="45" rx="5" fill="#e9f5ea" stroke="#3f8c4a"/>
+  <text x="755" y="245" text-anchor="middle" font-size="10">Managed secrets service</text>
+  <text x="755" y="260" text-anchor="middle" font-size="9" fill="#2e5c33">not env vars at this scale</text>
+
+  <text x="755" y="300" text-anchor="middle" font-size="9" fill="#888">Explicit non-goal: cross-org</text>
+  <text x="755" y="314" text-anchor="middle" font-size="9" fill="#888">data sharing platform</text>
+
+  <text x="450" y="440" text-anchor="middle" font-size="10" fill="#333" font-weight="bold">Advance stages only on measured need — design-principles.md #7</text>
+</svg>
